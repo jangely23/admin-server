@@ -1,0 +1,32 @@
+/*###### Login ######*/
+
+img {
+    width: 100%;
+}
+
+body {
+    background: url(../images/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+}
+
+
+/*###### Responsive ######*/
+
+@media (max-width: 576px) {
+    .columna_no_indispensable {
+        display: none;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
