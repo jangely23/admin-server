@@ -25,29 +25,29 @@ class clienteDTO{
         $this->estado = $estado;
     }
 
-    public function getIdCliente(): int { return $this->id_cliente; }
-    public function setIdCliente(int $id_cliente): void { $this->id_cliente = $id_cliente; }
+    function getIdCliente(): int { return $this->id_cliente; }
+    function setIdCliente(int $id_cliente): void { $this->id_cliente = $id_cliente; }
 
-    public function getNombre(): string { return $this->nombre; }
-    public function setNombre(string $nombre): void { $this->nombre = $nombre; }
+    function getNombre(): string { return $this->nombre; }
+    function setNombre(string $nombre): void { $this->nombre = $nombre; }
 
-    public function getCcNit(): string { return $this->cc_nit; }
-    public function setCcNit(string $cc_nit): void { $this->cc_nit = $cc_nit; }
+    function getCcNit(): string { return $this->cc_nit; }
+    function setCcNit(string $cc_nit): void { $this->cc_nit = $cc_nit; }
 
-    public function getAdministrador(): string { return $this->administrador; }
-    public function setAdministrador(string $administrador): void { $this->administrador = $administrador; }
+    function getAdministrador(): string { return $this->administrador; }
+    function setAdministrador(string $administrador): void { $this->administrador = $administrador; }
 
-    public function getDireccion(): string { return $this->direccion; }
-    public function setDireccion(string $direccion): void { $this->direccion = $direccion; }
+    function getDireccion(): string { return $this->direccion; }
+    function setDireccion(string $direccion): void { $this->direccion = $direccion; }
 
-    public function getCiudad(): string { return $this->ciudad; }
-    public function setCiudad(string $ciudad): void { $this->ciudad = $ciudad; }
+    function getCiudad(): string { return $this->ciudad; }
+    function setCiudad(string $ciudad): void { $this->ciudad = $ciudad; }
 
-    public function getPais(): string { return $this->pais; }
-    public function setPais(string $pais): void { $this->pais = $pais; }
+    function getPais(): string { return $this->pais; }
+    function setPais(string $pais): void { $this->pais = $pais; }
 
-    public function getEstado(): string { return $this->estado; }
-    public function setEstado(string $estado): void { $this->estado = $estado; }
+    function getEstado(): string { return $this->estado; }
+    function setEstado(string $estado): void { $this->estado = $estado; }
 
     function map($obj){
         $this->setIdCliente($obj->id_cliente);

@@ -32,7 +32,7 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
             <th scope="row">Nombre</th>
             <th class="columna_no_indispensable" scope="row">Administrador</th>
             <th class="columna_no_indispensable" scope="row">Dirección</th>
-            <th scope="row" colspan="2">Acciones</th>                    
+            <th scope="row" colspan="3">Acciones</th>                    
         </tr>
     </thead>
     <tbody>
@@ -48,7 +48,7 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
             <td class="columna_no_indispensable"> <?php echo $clienteDTO->getAdministrador(); ?></td>
             <td class="columna_no_indispensable"> <?php echo $clienteDTO->getDireccion(); ?></td>
 
-            <td><a class="text-info" href="#" onclick="abrirPagina('lists/contacto_cliente.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-user-plus"></i></a></td>
+            <td><a class="text-success" href="#" onclick="abrirPagina('lists/contacto_cliente.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-phone-square-alt"></i></a></td>
             <td><a class="text-warning" href="#" onclick="abrirPagina('forms/cliente.form.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-edit"></i></a></td>
             <td>
                 <form action="./process/cliente.process.php" id="formEliminar<?php echo $clienteDTO->getIdCliente();?>">

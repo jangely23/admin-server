@@ -3,7 +3,7 @@ $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda', FILTER_SANITIZE_STRING);
 ?>
 
 
-<fieldset class="bg-light shadow p-3 mb-3 bg-body rounded">
+<fieldset class=" shadow p-3 mb-3  rounded bg-ligth">
     <legend class="col-10">  
         Clientes
     </legend>
@@ -21,7 +21,7 @@ $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda', FILTER_SANITIZE_STRING);
 </fieldset>
 
 <div class="row">
-    <div id="id_div_contenido_cliente" class="p-3 col">
+    <div id="id_div_contenido_cliente " class="p-3 col">
         <?php require 'cliente.list.php' ; ?>
     </div>
 </div>

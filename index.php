@@ -21,7 +21,7 @@ $pagina_principal = 'lists/cliente.php';
     </head>
 
     <body onload="abrirPagina('<?php echo $pagina_principal; ?>','contenido','');">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,8 +54,8 @@ $pagina_principal = 'lists/cliente.php';
             </div>
         </nav>
 
-        <div class="container shadow p-3 mb-5 bg-body rounded">
-            <div class="card border-light">
+        <div class="container shadow p-3 mt-3 bg-white rounded">
+            <div class="card bg-white border-0">
                 <div class="card-body" id="contenido">               
                 </div>
             </div>  
