@@ -1,20 +1,20 @@
 <?php 
 
-require './config/conexion.php';
-require './class/conexion.class.php';
-require './class/'.$entidad.'DTO.class.php';
-require './class/'.$entidad.'DAO.class.php';
-require './class/'.$entidad.'COORDINADOR.class.php';
+require '../config/conexion.php';
+require '../class/conexion.class.php';
+require "../class/".$entidad."DTO.class.php";
+require "../class/".$entidad."DAO.class.php";
+require "../class/".$entidad."COORDINATOR.class.php";
 
-if($entidad == 'cliente'){
-    require './class/'.$entidad.'DAO.class.php';
-    require './class/'.$entidad.'COORDINADOR.class.php';
+if($entidad == "cliente"){
+    require "../class/contacto_clienteDAO.class.php";
+    require "../class/contacto_clienteDTO.class.php";
 }
 
 try{
     $modo = filter_input(INPUT_POST,"modo",FILTER_SANITIZE_STRING);
 
-    $nombreCoordinador = $entidad. "COORDINADOR";
+    $nombreCoordinador = $entidad."COORDINATOR";
     $coordinador = new $nombreCoordinador($conexion);
 
     switch ($modo){
@@ -35,7 +35,7 @@ try{
         $respuesta = array("resultado" => "false");
     }
 
-    $json = json_decode($respuesta);
+    $json = json_encode($respuesta);
     echo $json;
 
 }catch (Exception $ex){

@@ -25,14 +25,14 @@ class clienteDAO extends conexion{
         }
     }
 
-    function getCount(string $txt_busqueda = ''): int{
-        $sqlBusqueda = '';
+    function getCount(string $txt_busqueda=""){
+        $sqlBusqueda='';
 
-        if($txt_busqueda != ''){
-            $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")',$txt_busqueda);
+        if(empty($txt_busqueda)){
+            $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")');
         }
 
-        $query=sprintf('SELECT count(*) AS cantidad FROM cliente WHERE 1=1 %s ORDER BY estado, nombre ASC', $sqlBusqueda);
+        $query=sprintf("SELECT count(*) AS cantidad FROM cliente WHERE 1=1 %s ORDER BY estado, nombre ASC", $sqlBusqueda);
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -43,7 +43,7 @@ class clienteDAO extends conexion{
         }
     }
 
-    function getAllPage(string $txt_busqueda='', int $inicio=0, int $muestra=10): mysqli_result{
+    function getAllPage(string $txt_busqueda="", int $inicio=0, int $muestra=10): mysqli_result{
         $sqlBusqueda = '';
 
         if($txt_busqueda != ''){
@@ -63,7 +63,6 @@ class clienteDAO extends conexion{
     
     function insert(clienteDTO $clienteDTO){
         $query = sprintf('INSERT INTO cliente (nombre, cc_nit, administrador, direccion, ciudad, pais, estado) VALUES ("%s","%s","%s","%s","%s","%s","%s")', $clienteDTO->getNombre(), $clienteDTO->getCcNit(), $clienteDTO->getAdministrador(), $clienteDTO->getDireccion(), $clienteDTO->getCiudad(), $clienteDTO->getPais(), $clienteDTO->getEstado());
-
         $result = $this->getConexion()->query($query);
 
         if($result){

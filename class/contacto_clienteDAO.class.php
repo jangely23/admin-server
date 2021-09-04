@@ -58,6 +58,17 @@ class contacto_clienteDAO extends conexion{
         }
     }
 
+    function deleteByCustomer(int $id_cliente){
+        $query = sprintf('DELETE FROM contacto_cliente WHERE id_cliente="%d"', $id_cliente);
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return true;
+        }else{
+            throw new Exception("Error al intentar deleteByCustomer() en contacto_clienteDAO");
+        }
+    }
+
     function delete(int $id_contacto_cliente){
         $query = sprintf('DELETE FROM contacto_cliente WHERE id_contacto_cliente="%d"', $id_contacto_cliente);
         $result = $this->getConexion()->query($query);
@@ -68,6 +79,8 @@ class contacto_clienteDAO extends conexion{
             throw new Exception("Error al intentar delete() en contacto_clienteDAO");
         }
     }
+
+
 }
 
 ?>

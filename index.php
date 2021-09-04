@@ -30,10 +30,10 @@ $pagina_principal = 'lists/cliente.php';
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="" onclick="abrirPagina('./lists/cliente.php','contenido','');">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Clientes</a>
+                            <a class="nav-link " aria-current="page" href="#" onclick="abrirPagina('./lists/cliente.php','contenido','');">Clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" href="#">Servidores</a>    

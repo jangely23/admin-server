@@ -1,11 +1,11 @@
 <?php
 
-include "../config/conexion.php";
-include "../class/conexion.class.php";
-include "../class/clienteDTO.class.php";
-include "../class/clienteDAO.class.php";
-include "../class/contacto_clienteDTO.class.php";
-include "../class/contacto_clienteDAO.class.php";
+require "../config/conexion.php";
+require "../class/conexion.class.php";
+require "../class/clienteDTO.class.php";
+require "../class/clienteDAO.class.php";
+require "../class/contacto_clienteDTO.class.php";
+require "../class/contacto_clienteDAO.class.php";
 
 $id_cliente = filter_input(INPUT_POST, 'id_cliente',FILTER_SANITIZE_NUMBER_INT)??0;
 
@@ -15,8 +15,7 @@ $clienteDTO->loadById($id_cliente, $conexion);
 $contacto_clienteDTO = new contacto_clienteDTO();
 $contacto_clienteDAO = new contacto_clienteDAO($conexion);
 $contactos_cliente = $contacto_clienteDAO->getAll($clienteDTO->getIdCliente());
-/* var_dump($contactos_cliente);
-exit(); */
+
 ?>
 
 <div class="row">
@@ -26,7 +25,7 @@ exit(); */
         </legend>
     </fieldset>
     <div class="container-fluid p-3 me-3">
-        <form class="row" method="POST" action="./process/cliente.process.php" onsubmit="return enviarFormulario(this,'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_nombre').val());`);">
+        <form class="row g-3" method="POST" action="./process/cliente.process.php" onsubmit="return enviarFormulario(this,'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_nombre').val());`);">
             <div class="col-md-6 mb-3">
                 <label for="id_txt_nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="id_txt_nombre" name="nombre" placeholder="nombre" value="<?php echo $clienteDTO->getNombre(); ?>" required="yes">
@@ -65,16 +64,21 @@ exit(); */
                 <input type="text" class="form-control" id="id_txt_pais" name="pais" placeholder="pais" value="<?php echo $clienteDTO->getPais(); ?>">
             </div>
             
-            <?php  if($contactos_cliente){ ?>
+            <?php  if($contactos_cliente ->num_rows == 0){ ?>
 
             <div class="col-md-3 mb-3">
                 <label for="telefono" class="form-label">Telefono</label>
-                <input type="number" class="form-control" id="telefono" name="telefono" value="">
+                <input type="number" class="form-control" id="telefono" name="telefono" value="" placeholder="5782771207">
             </div>
 
             <div class="col-md-3 mb-3">
                 <label for="celular" class="form-label">Celular</label>
-                <input type="number" class="form-control" id="celular" name="celular" value="" required="yes">
+                <input type="number" class="form-control" id="celular" name="celular" value="" required="yes" placeholder="573009120695">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="corre@correo.com" value="" required="yes">
             </div>
 
             <div class="col-md-6 mb-3">

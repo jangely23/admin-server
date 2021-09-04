@@ -8,7 +8,7 @@ require '../class/clienteDTO.class.php';
 $clienteDAO = new clienteDAO($conexion);
 $clienteDTO = new clienteDTO();
 
-$txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING)??"";
+$txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING);
 
 //Inicio Paginacion
 
