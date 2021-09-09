@@ -28,8 +28,8 @@ class clienteDAO extends conexion{
     function getCount(string $txt_busqueda=""){
         $sqlBusqueda='';
 
-        if(empty($txt_busqueda)){
-            $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")');
+        if($txt_busqueda != ''){
+            $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")', $txt_busqueda);
         }
 
         $query=sprintf("SELECT count(*) AS cantidad FROM cliente WHERE 1=1 %s ORDER BY estado, nombre ASC", $sqlBusqueda);

@@ -14,7 +14,7 @@ $clienteDTO->loadById($id_cliente, $conexion);
 
 $contacto_clienteDTO = new contacto_clienteDTO();
 $contacto_clienteDAO = new contacto_clienteDAO($conexion);
-$contactos_cliente = $contacto_clienteDAO->getAll($clienteDTO->getIdCliente());
+$contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente());
 
 ?>
 

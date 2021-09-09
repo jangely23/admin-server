@@ -8,7 +8,7 @@ require '../class/clienteDTO.class.php';
 $clienteDAO = new clienteDAO($conexion);
 $clienteDTO = new clienteDTO();
 
-$txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING);
+$txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING)??"";
 
 //Inicio Paginacion
 
@@ -53,8 +53,10 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
             <td>
                 <form action="./process/cliente.process.php" id="formEliminar<?php echo $clienteDTO->getIdCliente();?>">
                     <input type="hidden" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente();?>"/>
+                    
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $clienteDTO->getIdCliente();?>'),'',`abrirPagina('lists/cliente.list.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val())`);">
+
+                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $clienteDTO->getIdCliente();?>'),'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`);">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </form>    
@@ -77,10 +79,10 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
 <div class="row ">
     <nav aria-label="Page navigation example" class="d-flex justify-content-center">
         <ul class="pagination">
-        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.list.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=1')"><i class="fas fa-fast-backward"></i></a></li>
-        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.list.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina-1);?>')"><i class="fas fa-step-backward"></i></a></li>
-        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.list.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina+1);?>')"><i class="fas fa-step-forward"></i></a></li>
-        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.list.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo $paginas;?>')"><i class="fas fa-fast-forward"></i></a></li>
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=1')"><i class="fas fa-fast-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina-1);?>')"><i class="fas fa-step-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina+1);?>')"><i class="fas fa-step-forward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo $paginas;?>')"><i class="fas fa-fast-forward"></i></a></li>
         </ul>
     </nav> 
 </div>

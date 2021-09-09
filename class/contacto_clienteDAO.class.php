@@ -10,8 +10,8 @@ class contacto_clienteDAO extends conexion{
         parent::__construct($conexion);
     }
 
-    function getById(int $id_cliente){
-        $query = sprintf("SELECT * FROM contacto_cliente WHERE id_cliente = '%d'", $id_cliente);
+    function getById(int $id_contacto_cliente){
+        $query = sprintf("SELECT * FROM contacto_cliente WHERE id_contacto_cliente = '%d'", $id_contacto_cliente);
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -25,10 +25,22 @@ class contacto_clienteDAO extends conexion{
         }
     }
 
-    function getAll(int $id_cliente){
-        $query = sprintf("SELECT * FROM contacto_cliente WHERE id_cliente=%d",$id_cliente);
+    function getCount(int $id_cliente){
+        $query = sprintf("SELECT count(*) AS cantidad FROM contacto_cliente WHERE id_cliente = '%d'", $id_cliente);
         $result = $this->getConexion()->query($query);
 
+        if($result){
+            $obj = $result->fetch_object();
+            return $obj->cantidad;
+        }else{
+            throw new Exception("Error al intentar getById en contacto_clienteDAO");
+        }
+    }    
+
+    function getAllPage(int $id_cliente=0, $inicio = 0, $muestra = 10): mysqli_result{
+        $query = sprintf("SELECT * FROM contacto_cliente WHERE id_cliente=%d limit %d, %d",$id_cliente, $inicio, $muestra);
+        $result = $this->getConexion()->query($query);
+        
         if($result){
             return $result;
         }else{
