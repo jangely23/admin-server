@@ -48,11 +48,6 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
                 <label for="id_txt_administrador" class="form-label">Administrador</label>
                 <input type="text" class="form-control" id="id_txt_cc_administrador" name="administrador" placeholder="administrador" value="<?php echo $clienteDTO->getAdministrador(); ?>">
             </div>
-            
-            <div class="col-md-6 mb-3">
-                <label for="id_txt_direccion" class="form-label">Direccion</label>
-                <input type="text" class="form-control" id="id_txt_direccion" name="direccion" placeholder="direccion" value="<?php echo $clienteDTO->getDireccion(); ?>">
-            </div>
 
             <div class="col-md-3 mb-3">
                 <label for="id_txt_ciudad" class="form-label">Ciudad</label>
@@ -62,6 +57,11 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
             <div class="col-md-3 mb-3">
                 <label for="id_txt_pais" class="form-label">Pais</label>
                 <input type="text" class="form-control" id="id_txt_pais" name="pais" placeholder="pais" value="<?php echo $clienteDTO->getPais(); ?>">
+            </div>
+                        
+            <div class="col-md-6 mb-3">
+                <label for="id_txt_direccion" class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="id_txt_direccion" name="direccion" placeholder="direccion" value="<?php echo $clienteDTO->getDireccion(); ?>">
             </div>
             
             <?php  if($contactos_cliente ->num_rows == 0){ ?>
@@ -88,7 +88,7 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
 
             <?php } ?>
 
-            <div class="col-md-6 mb-3 d-flex justify-content-start align-items-end">
+            <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
                 <input type="hidden" class="form-control" id="id_cliente" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente(); ?>">
                 <input type="hidden" name="modo" id="modo" value="<?php echo $clienteDTO->getIdCliente()?"editar":"crear"; ?>" />
 

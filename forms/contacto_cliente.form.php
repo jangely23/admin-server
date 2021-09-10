@@ -36,12 +36,12 @@ $contacto_clienteDTO->loadById($id_contacto_cliente, $conexion);
                 <input type="number" class="form-control" id="telefono" name="telefono" value="<?php echo $contacto_clienteDTO->getTelefono();?>" placeholder="5782771207">
             </div>
 
-            <div class="col-md-9 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="otro" class="form-label">Otra informacion</label>
                 <input type="text" class="form-control" id="otro" name="otro" placeholder="skype..." value="<?php echo $contacto_clienteDTO->getOtro();?>">
             </div>
 
-            <div class="col-md-6 mb-3 d-flex justify-content-start align-items-end">
+            <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
                 <input type="hidden" class="form-control" id="id_cliente" name="id_cliente" value="<?php echo $id_cliente; ?>">
 
                 <input type="hidden" class="form-control" id="id_contacto_cliente" name="id_contacto_cliente" value="<?php echo $contacto_clienteDTO->getIdContactoCliente(); ?>">   

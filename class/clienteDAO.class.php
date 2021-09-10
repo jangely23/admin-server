@@ -78,7 +78,7 @@ class clienteDAO extends conexion{
         $result = $this->getConexion()->query($query);
 
         if($result){
-            return $this->getConexion()->insert_id;
+            return true;
         }else{
             throw new Exception("Error al intentar update() en clienteDAO");
         }

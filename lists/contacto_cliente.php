@@ -5,7 +5,7 @@
     </legend>
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-info text-white float-end" onclick="abrirPagina('forms/contacto_cliente.form.php','contenido','&id_cliente=<?php  echo $id_cliente;?>');"> <i class="fas fa-user-plus"></i></button>
+            <button type="button" class="btn btn-info text-white float-end" onclick="abrirPagina('forms/contacto_cliente.form.php','contenido','&id_cliente=<?php  echo $id_cliente;?>');"> <i class="fas fa-phone-alt"></i></button>
         </div>
     </div>
 </fieldset>
