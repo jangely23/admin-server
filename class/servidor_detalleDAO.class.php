@@ -1,6 +1,6 @@
 <?php
 /*
- Entidad: Cliente
+ Entidad: servidor_detalle
  Author: Jessica Leonel
  Email: Jessica.leonel.p@gmail.com   
 */
@@ -52,7 +52,7 @@ class servidor_detalleDAO extends conexion{
             $sqlBusqueda = sprintf('AND (plan_servidor LIKE "%%%1$s%%" or ram LIKE "%%%1$s%%" or disco LIKE "%%%1$s%%" or procesador LIKE "%%%1$s%%" or datacentar LIKE "%%%1$s%%" or raid LIKE "%%%1$s%%" or costo LIKE "%%%1$f%%" or moneda LIKE "%%%1$s%%")',$txt_busqueda);
         }
 
-        $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 %s ORDER BY plan_servidor, costo LIMIT %d, %d",$sqlBusqueda, $inicio, $muestra);
+        $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 %s ORDER BY costo, plan_servidor asc LIMIT %d, %d",$sqlBusqueda, $inicio, $muestra);
         $result = $this->getConexion()->query($query);
 
         
@@ -64,8 +64,8 @@ class servidor_detalleDAO extends conexion{
     }
 
     function insert(servidor_detalleDTO $servidor_detalleDTO){
-        $query = sprintf('INSERT INTO servidor_detalle (plan_servidor, ram, disco, procesador, datacentar, raid, costo, moneda) VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%f", "%s",)',$servidor_detalleDTO->getPlan_servidor(), $servidor_detalleDTO->getRam(), $servidor_detalleDTO->getDisco(),$servidor_detalleDTO->getProcesador(), $servidor_detalleDTO->getDatacenter(), $servidor_detalleDTO->getRaid(),$servidor_detalleDTO->getCosto(), $servidor_detalleDTO->getMoneda());
-        
+        $query = sprintf('INSERT INTO servidor_detalle (plan_servidor, ram, disco, procesador, datacentar, raid, costo, moneda) VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%f", "%s")',$servidor_detalleDTO->getPlan_servidor(), $servidor_detalleDTO->getRam(), $servidor_detalleDTO->getDisco(),$servidor_detalleDTO->getProcesador(), $servidor_detalleDTO->getDatacenter(), $servidor_detalleDTO->getRaid(),$servidor_detalleDTO->getCosto(), $servidor_detalleDTO->getMoneda());
+       
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -76,14 +76,25 @@ class servidor_detalleDAO extends conexion{
     }
 
     function update(servidor_detalleDTO $servidor_detalleDTO){
-        $query = sprintf('UPDATE servidor_detalle SET plan_servidor="%s", ram="%s", disco="%s", procesador="%s", datacentar="%s", raid="%s", costo="%f", moneda="%s" WHERE id_servidor_detalle="%f"',$servidor_detalleDTO->getPlan_servidor(), $servidor_detalleDTO->getRam(), $servidor_detalleDTO->getDisco(),$servidor_detalleDTO->getProcesador(), $servidor_detalleDTO->getDatacenter(), $servidor_detalleDTO->getRaid(),$servidor_detalleDTO->getCosto(), $servidor_detalleDTO->getMoneda(), $servidor_detalleDTO->getId_servidor_detalle());
-        
+        $query = sprintf('UPDATE servidor_detalle SET plan_servidor="%s", ram="%s", disco="%s", procesador="%s", datacentar="%s", raid="%s", costo="%f", moneda="%s" WHERE id_servidor_detalle="%d"',$servidor_detalleDTO->getPlan_servidor(), $servidor_detalleDTO->getRam(), $servidor_detalleDTO->getDisco(),$servidor_detalleDTO->getProcesador(), $servidor_detalleDTO->getDatacenter(), $servidor_detalleDTO->getRaid(),$servidor_detalleDTO->getCosto(), $servidor_detalleDTO->getMoneda(), $servidor_detalleDTO->getId_servidor_detalle());
+        var_dump($query);
         $result = $this->getConexion()->query($query);
 
         if($result){
-            return $this->getConexion()->insert_id;
+            return true;
         }else{
-            throw new Exception("Error al intentar insert() en servidor_detalleDAO");
+            throw new Exception("Error al intentar update() en servidor_detalleDAO");
+        }
+    }
+
+    function delete(int $id_servidor_detalle){
+        $query = sprintf("DELETE FROM servidor_detalle WHERE id_servidor_detalle = %d", $id_servidor_detalle);
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return true;
+        }else{
+            throw new Exception("Error al intentar delete() en servidor_detalleDAO");
         }
     }
 }

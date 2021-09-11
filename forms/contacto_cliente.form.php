@@ -13,8 +13,10 @@ $contacto_clienteDTO->loadById($id_contacto_cliente, $conexion);
 ?>
 
 <div class="row">
-    <fieldset class="col-10 fs-3">
-        Editar datos de contacto cliente
+    <fieldset class="bg-white shadow p-3 mb-3 bg-body rounded">
+        <legend class="col-10 fs-3"> 
+            Datos contacto cliente
+        </legend>
     </fieldset>
 
     <div class="container-fluid p-3 me-3">

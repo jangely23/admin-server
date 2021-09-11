@@ -90,6 +90,7 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
 
             <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
                 <input type="hidden" class="form-control" id="id_cliente" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente(); ?>">
+                
                 <input type="hidden" name="modo" id="modo" value="<?php echo $clienteDTO->getIdCliente()?"editar":"crear"; ?>" />
 
                 <button type="submit" id="boton" name="enviar" class="btn btn-info">Guardar</button>

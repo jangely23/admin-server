@@ -15,7 +15,7 @@ class servidor_detalleDTO{
     private float $costo;
     private string $moneda;
 
-    function __construct(int $id_servidor_detalle=0, string $plan_servidor='', $ram='', $disco='', $procesador='', $datacenter='', $raid='', float $costo=0, string $moneda=''){
+    function __construct(int $id_servidor_detalle=0, string $plan_servidor="",string $ram="",string $disco="",string $procesador="",string $datacenter="",string $raid="", float $costo=0, string $moneda=''){
         $this->id_servidor_detalle = $id_servidor_detalle;
         $this->plan_servidor = $plan_servidor;
         $this->ram = $ram;
@@ -60,7 +60,7 @@ class servidor_detalleDTO{
         $this->setRam($obj->ram);
         $this->setDisco($obj->disco);
         $this->setProcesador($obj->procesador);
-        $this->setDatacenter($obj->datacenter);
+        $this->setDatacenter($obj->datacentar);
         $this->setRaid($obj->raid);
         $this->setCosto($obj->costo);
         $this->setMoneda($obj->moneda);

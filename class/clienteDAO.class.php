@@ -1,6 +1,6 @@
 <?php
 /*
- Entidad: Cliente
+ Entidad: cliente
  Author: Jessica Leonel
  Email: Jessica.leonel.p@gmail.com   
 */

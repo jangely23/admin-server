@@ -14,11 +14,11 @@ $contacto_clienteDAO = new contacto_clienteDAO($conexion);
 $muestra = 10;
 $pagina = filter_input(INPUT_POST,'pagina',FILTER_SANITIZE_NUMBER_INT)??1;
 
-$registroInicio = ($pagina-1) * $muestra;
-$cantidadRegistros = $contacto_clienteDAO->getCount($id_cliente);
-$paginas = ceil($cantidadRegistros/$muestra);
+$registro_inicio = ($pagina-1) * $muestra;
+$cantidad_registros = $contacto_clienteDAO->getCount($id_cliente);
+$paginas = ceil($cantidad_registros/$muestra);
 
-$datos_contacto = $contacto_clienteDAO->getAllPage($id_cliente, $registroInicio, $muestra);
+$datos_contacto = $contacto_clienteDAO->getAllPage($id_cliente, $registro_inicio, $muestra);
 //fin paginacion
 ?>
 
@@ -53,6 +53,7 @@ $datos_contacto = $contacto_clienteDAO->getAllPage($id_cliente, $registroInicio,
                     <input type="hidden" name="id_contacto_cliente" value="<?php echo $contacto_clienteDTO->getIdContactoCliente();?>"/>
 
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
+                    
                     <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $contacto_clienteDTO->getIdContactoCliente();?>'),'',`abrirPagina('lists/contacto_cliente.php', 'contenido', '&id_cliente=<?php echo $id_cliente;?>');`)">
                         <i class="fas fa-trash-alt"></i>
                     </a>
