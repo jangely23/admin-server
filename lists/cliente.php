@@ -15,7 +15,7 @@ $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda', FILTER_SANITIZE_STRING);
         </div>
         <div class="col">
             <button type="button" class="btn btn-secondary" onclick="abrirPagina('lists/cliente.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val());">Buscar</button>
-            <button type="button" class="btn btn-info text-white float-end" onclick="abrirPagina('forms/cliente.form.php','contenido','');"> <i class="fas fa-user-plus"></i></button>
+            <button type="button" class="btn btn-info text-white float-end" onclick="abrirPagina('forms/cliente.form.php','contenido','');"> <i class="fas fa-user-plus"></i>&nbsp;cliente</button>
         </div>
     </div>
 </fieldset>

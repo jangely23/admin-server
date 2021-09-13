@@ -30,23 +30,21 @@ $pagina_principal = 'lists/cliente.php';
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="" onclick="abrirPagina('./lists/servidor.php','contenido','');">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="#" onclick="abrirPagina('./lists/servidor.php','contenido','');">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="" onclick="abrirPagina('./lists/cliente.php','contenido','');">Clientes</a>
+                            <a class="nav-link " aria-current="page" href="#" onclick="abrirPagina('./lists/cliente.php','contenido','');">Clientes</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servidores</a>    
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="abrirPagina('./lists/servidor.php','contenido','');">Servidor</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPagina('./lists/servidor_detalle.php','contenido','');">Plan servidor</a></li>
-                            </ul>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="abrirPagina('./lists/servidor.php','contenido','');">Servidor</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#">Contabilidad</a>    
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="">Contabilidad</a>    
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="">Administracion</a>    
+                            <a class="nav-link " aria-current="page" href="#">Administracion</a>    
                         </li>
                     </ul>
                     <div class="d-flex">
