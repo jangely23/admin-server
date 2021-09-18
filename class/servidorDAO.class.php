@@ -72,6 +72,29 @@ class servidorDAO extends conexion{
         }
     }
 
+    function update(servidorDTO $servidorDTO){
+        $query = sprintf('UPDATE servidor SET id_servidor_detalle="%d" ip="%s", tipo="%s", estado="%s", periodicidad_pago="%s", nombre="%s", observacion="%s" WHERE id_servidor = "%d"', $servidorDTO->getId_servidor_detalle(), $servidorDTO->getIp(), $servidorDTO->GetTipo(), $servidorDTO->GetEstado(), $servidorDTO->getPeriodicidad_pago(), $servidorDTO->getNombre(), $servidorDTO->getObservacion(), $servidorDTO->getId_servidor());
+
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return true;
+        }else{
+            throw new Exception("Error al intentar update() en servidorDTO");
+        }
+    }
+
+    function delete($id_servidor){
+        $query = sprintf('DELETE FROM servidor WHERE id_servidor = "%d"', $id_servidor);
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return true;
+        }else{
+            throw new Exception("Error al intentar delete() en servidorDAO");
+        }
+    }
+
 }
 
 ?>

@@ -8,8 +8,6 @@ require "../class/contacto_clienteDTO.class.php";
 $contacto_clienteDTO = new contacto_clienteDTO();
 $contacto_clienteDAO = new contacto_clienteDAO($conexion);
 
-
-
 //Inicio paginacion
 $muestra = 10;
 $pagina = filter_input(INPUT_POST,'pagina',FILTER_SANITIZE_NUMBER_INT)??1;

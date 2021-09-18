@@ -19,6 +19,11 @@ body {
     .columna_no_indispensable {
         display: none;
     }
+    .display-query {
+        display: inline;
+        position: relative;
+        left: 0px;
+    }
 }
 
 input[type=number]::-webkit-inner-spin-button,
