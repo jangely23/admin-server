@@ -4,6 +4,7 @@ require "../class/conexion.class.php";
 require "../class/servidorDTO.class.php";
 require "../class/servidorDAO.class.php";
 require "../class/servidor_detalleDTO.class.php";
+require "../class/servidor_detalleDAO.class.php";
 
 $servidorDTO = new servidorDTO();
 $servidorDAO = new servidorDAO($conexion);
@@ -14,23 +15,24 @@ $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING)??
 
 //Inicio paginacion
 $muestra = 10;
-$pagina = filter_input(INPUT_POST,'pagina',FILTER_SANITIZE_STRING);
+$pagina = filter_input(INPUT_POST,'pagina',FILTER_SANITIZE_NUMBER_INT)??1;
 
-$registro_inicio = ($pagina -1) * 0;
+$registro_inicio = ($pagina-1) * 0;
 $cantidad_registros = $servidorDAO->getCount($txt_busqueda);
 $paginas = ceil($cantidad_registros / $muestra);
 
 $servidores = $servidorDAO->getAllPage($txt_busqueda, $registro_inicio, $muestra);
+
 //Fin paginacion
 ?>
 <table class="table table-striped">
     <thead class="text_center">
         <tr>
             <th scope="row">IP</th>
-            <th scope="row">Tipo</th>
+            <th scope="row" class="columna_no_indispensable">Tipo</th>
             <th scope="row">Estado</th>
-            <th scope="row"  class="columna_no_indispensable">Pago</th>
-            <th scope="row">Nombre</th>
+            <th scope="row" class="columna_no_indispensable">Pago</th>
+            <th scope="row" class="columna_no_indispensable">Nombre</th>
             <th scope="row" class="columna_no_indispensable">Observacion</th>
             <th scope="row" colspan="3">Acciones</th>
         </tr>
@@ -43,10 +45,10 @@ $servidores = $servidorDAO->getAllPage($txt_busqueda, $registro_inicio, $muestra
         ?>
         <tr>
             <td><?php echo $servidorDTO->getIp(); ?></td>
-            <td><?php echo $servidorDTO->getTipo();?></td>
+            <td class="columna_no_indispensable"><?php echo $servidorDTO->getTipo()." - ".$servidor_detalleDTO->getPlan_servidor();;?></td>
             <td><?php echo $servidorDTO->getEstado();?></td>
             <td class="columna_no_indispensable"><?php echo $servidorDTO->getPeriodicidad_pago();?></td>
-            <td><?php echo $servidorDTO->getNombre();?></td>
+            <td class="columna_no_indispensable"><?php echo $servidorDTO->getNombre();?></td>
             <td class="columna_no_indispensable"><?php echo $servidorDTO->getObservacion();?></td>
             <td>
                 <a class="text-warning" href="#" onclick="abrirPagina('forms/servidor.form.php','contenido','&id_servidor=<?php echo $servidorDTO->getId_servidor();?>');"><i class="fas fa-edit"></i></a>

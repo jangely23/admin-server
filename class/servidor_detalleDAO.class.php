@@ -13,6 +13,7 @@ class servidor_detalleDAO extends conexion{
 
     function getById(int $id_servidor_detalle){
         $query = sprintf("SELECT * FROM servidor_detalle WHERE id_servidor_detalle = %d", $id_servidor_detalle);
+        
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -54,7 +55,6 @@ class servidor_detalleDAO extends conexion{
 
         $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 %s ORDER BY costo, plan_servidor asc LIMIT %d, %d",$sqlBusqueda, $inicio, $muestra);
         $result = $this->getConexion()->query($query);
-
         
         if($result){
             return $result;

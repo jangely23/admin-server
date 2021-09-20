@@ -20,7 +20,7 @@ $datos_contacto = $contacto_clienteDAO->getAllPage($id_cliente, $registro_inicio
 //fin paginacion
 ?>
 
-<table class="table table-striped">
+<table class="table table-striped ">
     <thead class="text_center">
         <tr>
             <th scope="row">Email</th>

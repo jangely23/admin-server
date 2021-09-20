@@ -29,7 +29,7 @@ class servidorDTO{
     function setId_servidor($id_servidor): void{ $this->id_servidor=$id_servidor;}
 
     function getId_servidor_detalle(): int{ return $this->id_servidor_detalle; }
-    function setId_servidor_detalle($id_servidor_detalle): void{ $this->id_servidor=$id_servidor_detalle;}
+    function setId_servidor_detalle($id_servidor_detalle): void{ $this->id_servidor_detalle=$id_servidor_detalle;}
     
     function getIp(): string{ return $this->ip; }
     function setIp($ip): void{ $this->ip=$ip;}

@@ -12,7 +12,7 @@
 </fieldset>
 
 <div class="row">
-    <div id="id_div_contenido_contacto_cliente" class="p-3 col">
+    <div id="id_div_contenido_contacto_cliente" class="p-3 table-responsive">
         <?php require 'contacto_cliente.list.php' ; ?>
     </div>
 </div>

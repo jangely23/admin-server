@@ -37,10 +37,10 @@ class servidorCOORDINATOR extends conexion{
         return $result;
     }
 
-    function deletByPost(){
+    function deleteByPost(){
         $id_servidor = filter_input(INPUT_POST,'id_servidor',FILTER_SANITIZE_NUMBER_INT);
         $servidorDAO = new servidorDAO($this->getConexion());
-        $result = $servidorDAO->update($id_servidor);
+        $result = $servidorDAO->delete($id_servidor);
 
         return $result;
     }
