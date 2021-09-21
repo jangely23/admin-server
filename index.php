@@ -37,14 +37,14 @@ $pagina_principal = 'lists/cliente.php';
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="abrirPagina('./lists/servidor.php','contenido','');">Servidor</a>
+                            <a class="nav-link" href="#"aria-current="page" onclick="abrirPagina('./lists/servidor.php','contenido','');">Servidor</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" href="#">Contabilidad</a>    
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Administracion</a>    
+                            <a class="nav-link " aria-current="page" href="#" onclick="abrirPagina('./lists/administracion.php','contenido','');">Administracion</a>    
                         </li>
                     </ul>
                     <div class="d-flex">
