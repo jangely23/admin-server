@@ -60,7 +60,7 @@ class resellerDAO extends conexion{
         $result = $this->getConexion()->query($query);
 
         if($result){
-            return $this->getConexion()->insert_id;
+            return $result;
         }else{
             throw new Exception("Error al intentar insert() en resellerDAO");
         }

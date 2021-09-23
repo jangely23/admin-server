@@ -40,6 +40,20 @@ class productoDAO extends conexion{
         }
     }
 
+    //funcion exclusiva para uso en form de cliente_producto
+
+    function getAllActive(){
+
+        $query = sprintf("SELECT * FROM producto WHERE estado='disponible' ORDER BY nombre asc");
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return $result;
+        }else{
+            throw new Exception("Error al intentar getAll() en prodcutoDAO");
+        }
+    }
+
     function insert(productoDTO $productoDTO){
         $query = sprintf("INSERT INTO producto (nombre, version, estado) VALUES ('%s', '%s', '%s')", $productoDTO->getNombre(), $productoDTO->getVersion(), $productoDTO->getEstado());
         var_dump($query);

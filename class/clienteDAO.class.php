@@ -60,6 +60,21 @@ class clienteDAO extends conexion{
             throw new Exception("Error al intentar getAllPage() en clienteDAO");
         }
     }
+
+    //funcion exclusiva para uso en form de cliente_producto
+    
+    function getAll(): mysqli_result{
+
+        $query='SELECT * FROM cliente ORDER BY estado, nombre ASC'; 
+
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return $result;
+        }else{
+            throw new Exception("Error al intentar getAll() en clienteDAO");
+        }
+    }
     
     function insert(clienteDTO $clienteDTO){
         $query = sprintf('INSERT INTO cliente (nombre, cc_nit, administrador, direccion, ciudad, pais, estado) VALUES ("%s","%s","%s","%s","%s","%s","%s")', $clienteDTO->getNombre(), $clienteDTO->getCcNit(), $clienteDTO->getAdministrador(), $clienteDTO->getDireccion(), $clienteDTO->getCiudad(), $clienteDTO->getPais(), $clienteDTO->getEstado());

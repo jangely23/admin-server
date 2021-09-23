@@ -15,7 +15,7 @@ class contacto_clienteDAO extends conexion{
         $result = $this->getConexion()->query($query);
 
         if($result){
-            if($result->num_rows){
+            if($result->num_rows != 0){
                 return $result->fetch_object();
             }else{
                 return 0;

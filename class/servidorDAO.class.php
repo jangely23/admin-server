@@ -61,6 +61,21 @@ class servidorDAO extends conexion{
         }
     }
 
+    //funcion exclusiva para uso en form de cliente_producto
+    
+    function getAll(): mysqli_result{
+
+        $query='SELECT * FROM servidor WHERE estado = "libre" ORDER BY tipo DESC'; 
+
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return $result;
+        }else{
+            throw new Exception("Error al intentar getAll() en clienteDAO");
+        }
+    }
+
     function insert(servidorDTO $servidorDTO){
         $query = sprintf('INSERT INTO servidor (id_servidor_detalle, ip, tipo, estado, periodicidad_pago, nombre, observacion) VALUES ("%d","%s","%s","%s","%s","%s","%s")', $servidorDTO->getId_servidor_detalle(), $servidorDTO->getIp(), $servidorDTO->GetTipo(), $servidorDTO->GetEstado(), $servidorDTO->getPeriodicidad_pago(), $servidorDTO->getNombre(), $servidorDTO->getObservacion());
 
