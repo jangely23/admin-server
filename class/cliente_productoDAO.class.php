@@ -25,6 +25,7 @@ class cliente_productoDAO extends conexion{
         }
     }
 
+    //funcion de uso exclusivo para cliente_productoCOORDINATOR
     function getByIdCustom(int $id_cliente){
         $query = sprintf("SELECT * FROM cliente_producto WHERE id_cliente = %d",$id_cliente);
         $result = $this->getConexion()->query($query);
@@ -90,7 +91,7 @@ class cliente_productoDAO extends conexion{
 
     function update(cliente_productoDTO $cliente_productoDTO){
         $query = sprintf('UPDATE cliente_producto SET id_servidor=%d, id_cliente=%d, id_producto=%d, id_reseller=%d, ip_docker="%s", estado="%s", maxcall="%s", precio_venta=%f, referencia="%s", dominio="%s", saldo=%f, descuento=%f WHERE id_cliente_producto=%d', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento(), $cliente_productoDTO->getId_cliente_producto());
-
+        
         $result = $this->getConexion()->query($query);
 
         if($result){

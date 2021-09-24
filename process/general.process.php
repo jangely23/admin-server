@@ -9,6 +9,12 @@ require "../class/".$entidad."COORDINATOR.class.php";
 if($entidad == "cliente"){
     require "../class/contacto_clienteDAO.class.php";
     require "../class/contacto_clienteDTO.class.php";
+
+}else if($entidad == "cliente_producto"){
+    require "../class/clienteDAO.class.php";
+    require "../class/clienteDTO.class.php";
+    require "../class/servidorDAO.class.php";
+    require "../class/servidorDTO.class.php";
 }
 
 try{

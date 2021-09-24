@@ -18,6 +18,9 @@ class cliente_productoCOORDINATOR extends conexion{
         $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT);
         $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT);
 
+        $servidorDAO = new servidorDAO($this->getConexion());
+        $server = $servidorDAO->getById($id_servidor);
+
         $cliente_productoDTO =  new cliente_productoDTO(0, $id_servidor, $id_cliente, $id_producto, $id_reseller, $ip_docker, $estado, $maxcall, $precio_venta, $referencia, $dominio, $saldo, $descuento);
         $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
         $id_cliente_producto = $cliente_productoDAO->insert($cliente_productoDTO);
@@ -25,9 +28,6 @@ class cliente_productoCOORDINATOR extends conexion{
         //Actualiza el estado del server en "uso"
 
         if ($id_cliente_producto != 0){
-            $servidorDAO = new servidorDAO($this->getConexion());
-            $server = $servidorDAO->getById($id_servidor);
-            
             $servidorDTO = new servidorDTO($server->id_servidor, $server->id_servidor_detalle, $server->ip, $server->tipo, 'uso', $server->periodicidad_pago, $server->nombre, $server->observacion);
             $result = $servidorDAO->update($servidorDTO);
 
@@ -56,10 +56,10 @@ class cliente_productoCOORDINATOR extends conexion{
 
         $cliente_productoDTO =  new cliente_productoDTO($id_cliente_producto, $id_servidor, $id_cliente, $id_producto, $id_reseller, $ip_docker, $estado, $maxcall, $precio_venta, $referencia, $dominio, $saldo, $descuento);
         
-        $id_cliente_producto = $cliente_productoDAO->update($cliente_productoDTO);
+        $update_cliente_producto = $cliente_productoDAO->update($cliente_productoDTO);
 
         //Actualiza el estado del server segun sea el caso
-
+        var_dump($_POST);
         switch ($estado){
             case "activo":
                 if($estado != $estado_inicial->estado){
@@ -84,7 +84,7 @@ class cliente_productoCOORDINATOR extends conexion{
         
                     //verifica si el cliente tiene servers activos
                     $server_activos_cliente = $cliente_productoDAO->getByIdCustom($id_cliente);
-
+                    var_dump($server_activos_cliente);
                     if($server_activos_cliente == 0){
                         $clienteDAO = new clienteDAO($this->getConexion());
                         $cliente = $clienteDAO->getById($id_cliente);

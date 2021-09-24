@@ -35,8 +35,10 @@ $paginas = ceil($cantidadRegistros/$muestra);
 $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
 
 //Fin paginacion
-
+ 
 ?>
+<script src="../public/js/cliente_producto.js"></script>
+
 <table class="table table-striped">
     <thead class="text-center">
         <tr>
@@ -62,25 +64,26 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
         ?>
 
         <tr>
-            <td> <?php echo $clienteDTO->getNombre(); ?></td>
-            <td> <?php echo $servidorDTO->getIp(); ?></td>
-            <td> <?php echo $cliente_productoDTO->getDominio(); ?></td>
-            <td> <?php echo $cliente_productoDTO->getEstado(); ?></td>
-            <td> <?php echo $productoDTO->getNombre()." ".$productoDTO->getVersion(); ?></td>
-            <td class="columna_no_indispensable"> <?php $cliente_productoDTO->getMaxcall(); ?></td>
-            <td class="columna_no_indispensable"> <?php echo $cliente_productoDTO->getReferencia(); ?></td>
-            <td class="columna_no_indispensable"> <?php echo $resellerDTO->getNombre(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $clienteDTO->getNombre(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $servidorDTO->getIp(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $cliente_productoDTO->getDominio(); ?></td>
+            <td class="estadoClienteProducto botonDeshabilitar"><?php echo $cliente_productoDTO->getEstado(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $productoDTO->getNombre()." ".$productoDTO->getVersion(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php $cliente_productoDTO->getMaxcall(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getReferencia(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $resellerDTO->getNombre(); ?></td>
 
-            <td><a class="text-warning" href="#" onclick="abrirPagina('forms/cliente_producto.form.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-edit"></i></a></td>
+            <td><a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/cliente_producto.form.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-edit"></i></a></td>
             <td>
                 <form action="./process/cliente_producto.process.php" id="formEliminar<?php echo $cliente_productoDTO->getId_cliente_producto();?>">
                     <input type="hidden" name="id_cliente_producto" value="<?php echo $cliente_productoDTO->getId_cliente_producto();?>"/>
 
                     <input type="hidden" name="id_servidor" value="<?php echo $cliente_productoDTO->getId_servidor();?>"/>
+                    <input type="hidden" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente();?>"/>
                     
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
 
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $cliente_productoDTO->getId_cliente_producto();?>'),'',`abrirPagina('lists/cliente_producto.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`);">
+                    <a class="text-danger botonDeshabilitar" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $cliente_productoDTO->getId_cliente_producto();?>'),'',`abrirPagina('lists/cliente_producto.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`);">
                         <i class="fas fa-times-circle"></i>
                     </a>
                 </form>    

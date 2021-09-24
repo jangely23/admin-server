@@ -63,10 +63,14 @@ class servidorDAO extends conexion{
 
     //funcion exclusiva para uso en form de cliente_producto
     
-    function getAll(): mysqli_result{
+    function getAllByStatus(int $id_servidor=0): mysqli_result{
+        $sql_busqueda = "";
+                
+        if ($id_servidor != 0){
+            $sql_busqueda = sprintf("OR id_servidor = %d",$id_servidor);
+        }
 
-        $query='SELECT * FROM servidor WHERE estado = "libre" ORDER BY tipo DESC'; 
-
+        $query = sprintf('SELECT * FROM servidor WHERE estado = "libre" %s ORDER BY tipo DESC', $sql_busqueda); 
         $result = $this->getConexion()->query($query);
 
         if($result){

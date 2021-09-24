@@ -27,9 +27,9 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
 <table class="table table-striped">
     <thead class="text-center">
         <tr>
-            <th scope="row">Estado</th>
             <th class="columna_no_indispensable" scope="row">CC-NIT</th>
             <th scope="row">Nombre</th>
+            <th scope="row">Estado</th>
             <th class="columna_no_indispensable" scope="row">Administrador</th>
             <th class="columna_no_indispensable" scope="row">Dirección</th>
             <th scope="row" colspan="3">Acciones</th>                    
@@ -42,9 +42,9 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
         ?>
 
         <tr>
-            <td> <?php echo $clienteDTO->getEstado(); ?></td>
             <td class="columna_no_indispensable"> <?php echo $clienteDTO->getCcNit(); ?></td>
             <td> <?php echo $clienteDTO->getNombre(); ?></td>
+            <td> <?php echo $clienteDTO->getEstado(); ?></td>          
             <td class="columna_no_indispensable"> <?php echo $clienteDTO->getAdministrador(); ?></td>
             <td class="columna_no_indispensable"> <?php echo $clienteDTO->getDireccion(); ?></td>
 
