@@ -56,24 +56,8 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
         </fieldset>
         <div class="container-fluid p-3 me-3">
             <form class="row g-3" method="POST" action="./process/cliente_producto.process.php" onsubmit="return enviarFormulario(this,'',`abrirPagina('lists/cliente_producto.php', 'contenido', '&id_cliente_producto=<?php echo $id_cliente_producto; ?>');`);">
-
-                <div class="col-md-3 mb-3 list-group">
-                    <label for="id_servidor" class="form-label">Servidor</label>
-
-                    <select name="id_servidor" aria-label="Default select example" id="id_servidor" class="form-select" required>
-                        <option>Seleccione...</option>
-                        <?php 
-                        while($obj = $servidores->fetch_object()){
-                            $servidorDTO->map($obj);
-                        ?>
-                        <option value="<?php echo $servidorDTO->getId_servidor();?>" <?php echo $servidorDTO->getId_servidor()==$cliente_productoDTO->getId_servidor()?"selected":"";?>> <?php echo $servidorDTO->getIp(); ?></option>
-                        <?php 
-                        }
-                        ?>
-                    </select>  
-                </div>
-                    
-                <div class="col-md-6 mb-3 list-group">
+                
+                <div class="col-md-4 mb-3 list-group">
                     <label for="id_cliente" class="form-label">Cliente</label>
 
                     <select name="id_cliente" aria-label="Default select example" id="id_cliente" class="form-select" required>
@@ -89,9 +73,45 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                     </select>  
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-2 mb-3 list-group">
+                    <label for="id_txt_ip_docker" class="form-label">Ip docker</label>
+                    <input type="text" class="form-control" id="id_txt_ip_docker" name="ip_docker" placeholder="192.168.28.81" value="<?php echo $cliente_productoDTO->getIp_docker(); ?>" required>
+                </div>   
+
+                 <div class="col-md-3 mb-3 list-group">
+                    <label for="id_servidor" class="form-label">Servidor</label>
+
+                    <select name="id_servidor" aria-label="Default select example" id="id_servidor" class="form-select" required>
+                        <option>Seleccione...</option>
+                        <?php 
+                        while($obj = $servidores->fetch_object()){
+                            $servidorDTO->map($obj);
+                        ?>
+                        <option value="<?php echo $servidorDTO->getId_servidor();?>" <?php echo $servidorDTO->getId_servidor()==$cliente_productoDTO->getId_servidor()?"selected":"";?>> <?php echo $servidorDTO->getIp(); ?></option>
+                        <?php 
+                        }
+                        ?>
+                    </select>  
+                </div>
+                    
+                <div class="col-md-3 mb-3 list-group">
+                    <label for="id_txt_estado" class="form-label">Estado</label>
+                    <select class="form-select" aria-label="Default select example" name="estado" id="estado" required="yes">
+                        <option value="activo" <?php echo $cliente_productoDTO->getEstado()=="activo"?"selected":"";?>>Activo</option>
+                        <option value="demo" <?php echo $cliente_productoDTO->getEstado()=="demo"?"selected":"";?>>Demo</option>
+                        <option value="suspendido" <?php echo $cliente_productoDTO->getEstado()=="suspendido"?"selected":"";?>>Suspendido</option>
+                        <option value="cancelado" <?php echo $cliente_productoDTO->getEstado()=="cancelado"?"selected":"";?>>Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3 list-group">
                     <label for="id_txt_dominio" class="form-label">Dominio</label>
                     <input type="text" class="form-control" id="id_txt_dominio" name="dominio" placeholder="sip.midominio.com" value="<?php echo $cliente_productoDTO->getDominio(); ?>">
+                </div>
+
+                <div class="col-md-2 mb-3 list-group">
+                    <label for="id_txt_maxcall" class="form-label">Canales</label>
+                    <input type="text" class="form-control" id="id_txt_maxcall" name="maxcall" placeholder="10" value="<?php echo $cliente_productoDTO->getMaxcall(); ?>" required>
                 </div>
 
                 <div class="col-md-3 mb-3 list-group">
@@ -110,7 +130,7 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                     </select>  
                 </div>
 
-                <div class="col-md-4 mb-3 list-group">
+                <div class="col-md-3 mb-3 list-group">
                     <label for="id_reseller" class="form-label">Reseller</label>
 
                     <select name="id_reseller" aria-label="Default select example" id="id_reseller" class="form-select" required>
@@ -125,49 +145,26 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                         ?>
                     </select>  
                 </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="id_txt_ip_docker" class="form-label">Ip docker</label>
-                    <input type="text" class="form-control" id="id_txt_ip_docker" name="ip_docker" placeholder="192.168.28.81" value="<?php echo $cliente_productoDTO->getIp_docker(); ?>" required>
-                </div>
-
-                        
-                <div class="col-md-3 mb-3">
-                    <label for="id_txt_estado" class="form-label">Estado</label>
-                    <select class="form-select" aria-label="Default select example" name="estado" id="estado" required="yes">
-                        <option value="activo" <?php echo $cliente_productoDTO->getEstado()=="activo"?"selected":"";?>>Activo</option>
-                        <option value="demo" <?php echo $cliente_productoDTO->getEstado()=="demo"?"selected":"";?>>Demo</option>
-                        <option value="suspendido" <?php echo $cliente_productoDTO->getEstado()=="suspendido"?"selected":"";?>>Suspendido</option>
-                        <option value="cancelado" <?php echo $cliente_productoDTO->getEstado()=="cancelado"?"selected":"";?>>Cancelado</option>
-                    </select>
-                </div>
-                
-                <div class="col-md-3 mb-3">
-                    <label for="id_txt_maxcall" class="form-label">Canales</label>
-                    <input type="text" class="form-control" id="id_txt_maxcall" name="maxcall" placeholder="10" value="<?php echo $cliente_productoDTO->getMaxcall(); ?>" required>
-                </div>
-
-                            
-                <div class="col-md-6 mb-3">
+                                       
+                <div class="col-md-4 mb-3 list-group">
                     <label for="id_txt_referencia" class="form-label">Referencia</label>
                     <input type="text" class="form-control" id="id_txt_referencia" name="referencia" placeholder="000656253482" value="<?php echo $cliente_productoDTO->getReferencia(); ?>" required>
                 </div>
-                
-                <div class="col-md-3 mb-3">
-                    <label for="id_txt_precio_venta" class="form-label">Precio de venta</label>
-                    <input type="number" step="any" class="form-control" id="id_txt_precio_venta" name="precio_venta" placeholder="180.000" value="<?php echo $cliente_productoDTO->getPrecio_venta(); ?>">
+
+                <div class="col-md-2 mb-3 list-group">
+                    <label for="id_txt_descuento" class="form-label">Descuento</label>
+                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50.000" value="<?php echo $cliente_productoDTO->getDescuento(); ?>" required>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 list-group">
+                    <label for="id_txt_precio_venta" class="form-label">Precio de venta</label>
+                    <input type="number" step="any" class="form-control" id="id_txt_precio_venta" name="precio_venta" placeholder="180.000" value="<?php echo $cliente_productoDTO->getPrecio_venta(); ?>" required>
+                </div>
+
+                <div class="col-md-3 mb-3 list-group">
                     <label for="id_txt_saldo" class="form-label">Saldo</label>
                     <input type="number" step="any" class="form-control" id="id_txt_saldo" name="saldo" placeholder="180.000" value="<?php echo $cliente_productoDTO->getSaldo(); ?>">
                 </div>
-
-                <div class="col-md-3 mb-3">
-                    <label for="id_txt_descuento" class="form-label">Descuento</label>
-                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50.000" value="<?php echo $cliente_productoDTO->getDescuento(); ?>">
-                </div>
-
 
                 <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
                     <input type="hidden" class="form-control" id="id_cliente_producto" name="id_cliente_producto" value="<?php echo $cliente_productoDTO->getId_cliente_producto(); ?>">

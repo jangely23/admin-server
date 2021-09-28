@@ -25,6 +25,7 @@ $servidores = $servidorDAO->getAllPage($txt_busqueda, $registro_inicio, $muestra
 
 //Fin paginacion
 ?>
+<script src="../public/js/deshabilitar.js"></script>
 <table class="table table-striped">
     <thead class="text_center">
         <tr>
@@ -44,14 +45,14 @@ $servidores = $servidorDAO->getAllPage($txt_busqueda, $registro_inicio, $muestra
             $servidor_detalleDTO->loadById($servidorDTO->getId_servidor_detalle(), $conexion);
         ?>
         <tr>
-            <td><?php echo $servidorDTO->getIp(); ?></td>
-            <td class="columna_no_indispensable"><?php echo $servidorDTO->getTipo()." - ".$servidor_detalleDTO->getPlan_servidor();;?></td>
-            <td><?php echo $servidorDTO->getEstado();?></td>
-            <td class="columna_no_indispensable"><?php echo $servidorDTO->getPeriodicidad_pago();?></td>
-            <td class="columna_no_indispensable"><?php echo $servidorDTO->getNombre();?></td>
-            <td class="columna_no_indispensable"><?php echo $servidorDTO->getObservacion();?></td>
+            <td class="botonDeshabilitar"><?php echo $servidorDTO->getIp(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $servidorDTO->getTipo()." - ".$servidor_detalleDTO->getPlan_servidor();;?></td>
+            <td class="estadoClienteProducto botonDeshabilitar"><?php echo $servidorDTO->getEstado();?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $servidorDTO->getPeriodicidad_pago();?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $servidorDTO->getNombre();?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $servidorDTO->getObservacion();?></td>
             <td>
-                <a class="text-warning" href="#" onclick="abrirPagina('forms/servidor.form.php','contenido','&id_servidor=<?php echo $servidorDTO->getId_servidor();?>');"><i class="fas fa-edit"></i></a>
+                <a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/servidor.form.php','contenido','&id_servidor=<?php echo $servidorDTO->getId_servidor();?>');"><i class="fas fa-edit"></i></a>
             </td>
             <td>
                 <form action="./process/servidor.process.php" id="formEliminar<?php echo $servidorDTO->getId_servidor();?>">
@@ -59,7 +60,7 @@ $servidores = $servidorDAO->getAllPage($txt_busqueda, $registro_inicio, $muestra
 
                     <input type="hidden" name='modo' value='eliminar'>
 
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $servidorDTO->getId_servidor();?>'),'',`abrirPagina('lists/servidor.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`)">
+                    <a class="text-danger botonDeshabilitar" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $servidorDTO->getId_servidor();?>'),'',`abrirPagina('lists/servidor.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`)">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </form>

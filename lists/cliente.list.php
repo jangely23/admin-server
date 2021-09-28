@@ -24,6 +24,8 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
 //Fin paginacion
 
 ?>
+<script src="../public/js/deshabilitar.js"></script>
+
 <table class="table table-striped">
     <thead class="text-center">
         <tr>
@@ -42,21 +44,21 @@ $clientes = $clienteDAO->getAllPage($txt_busqueda, $registroInicio, $muestra);
         ?>
 
         <tr>
-            <td class="columna_no_indispensable"> <?php echo $clienteDTO->getCcNit(); ?></td>
-            <td> <?php echo $clienteDTO->getNombre(); ?></td>
-            <td> <?php echo $clienteDTO->getEstado(); ?></td>          
-            <td class="columna_no_indispensable"> <?php echo $clienteDTO->getAdministrador(); ?></td>
-            <td class="columna_no_indispensable"> <?php echo $clienteDTO->getDireccion(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $clienteDTO->getCcNit(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $clienteDTO->getNombre(); ?></td>
+            <td class="estadoClienteProducto botonDeshabilitar"><?php echo $clienteDTO->getEstado(); ?></td>          
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $clienteDTO->getAdministrador(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $clienteDTO->getDireccion(); ?></td>
 
-            <td><a class="text-success" href="#" onclick="abrirPagina('lists/contacto_cliente.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-phone-square-alt"></i></a></td>
-            <td><a class="text-warning" href="#" onclick="abrirPagina('forms/cliente.form.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-edit"></i></a></td>
+            <td><a class="text-success botonDeshabilitar" href="#" onclick="abrirPagina('lists/contacto_cliente.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-phone-square-alt"></i></a></td>
+            <td><a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/cliente.form.php','contenido','&id_cliente=<?php echo $clienteDTO->getIdCliente();?>')"><i class="fas fa-edit"></i></a></td>
             <td>
                 <form action="./process/cliente.process.php" id="formEliminar<?php echo $clienteDTO->getIdCliente();?>">
                     <input type="hidden" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente();?>"/>
                     
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
 
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $clienteDTO->getIdCliente();?>'),'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`);">
+                    <a class="text-danger botonDeshabilitar" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $clienteDTO->getIdCliente();?>'),'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`);">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </form>    

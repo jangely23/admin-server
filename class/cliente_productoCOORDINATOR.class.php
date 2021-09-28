@@ -19,7 +19,9 @@ class cliente_productoCOORDINATOR extends conexion{
         $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT);
 
         $servidorDAO = new servidorDAO($this->getConexion());
+        $clienteDAO = new clienteDAO($this->getConexion());
         $server = $servidorDAO->getById($id_servidor);
+        $cliente = $clienteDAO->getById($id_cliente);
 
         $cliente_productoDTO =  new cliente_productoDTO(0, $id_servidor, $id_cliente, $id_producto, $id_reseller, $ip_docker, $estado, $maxcall, $precio_venta, $referencia, $dominio, $saldo, $descuento);
         $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
@@ -30,6 +32,9 @@ class cliente_productoCOORDINATOR extends conexion{
         if ($id_cliente_producto != 0){
             $servidorDTO = new servidorDTO($server->id_servidor, $server->id_servidor_detalle, $server->ip, $server->tipo, 'uso', $server->periodicidad_pago, $server->nombre, $server->observacion);
             $result = $servidorDAO->update($servidorDTO);
+
+            $clienteDTO = new clienteDTO($cliente->id_cliente, $cliente->nombre, $cliente->cc_nit, $cliente->administrador, $cliente->direccion, $cliente->ciudad, $cliente->pais, 'activo');
+            $result = $clienteDAO->update($clienteDTO);
 
             return $result;
         }
@@ -81,16 +86,16 @@ class cliente_productoCOORDINATOR extends conexion{
                     
                     $servidorDTO = new servidorDTO($server->id_servidor, $server->id_servidor_detalle, $server->ip, $server->tipo, 'libre', $server->periodicidad_pago, $server->nombre, $server->observacion);
                     $servidorDAO->update($servidorDTO);
-        
+                    
                     //verifica si el cliente tiene servers activos
                     $server_activos_cliente = $cliente_productoDAO->getByIdCustom($id_cliente);
-                    var_dump($server_activos_cliente);
+                    
                     if($server_activos_cliente == 0){
                         $clienteDAO = new clienteDAO($this->getConexion());
                         $cliente = $clienteDAO->getById($id_cliente);
                         
                         $clienteDTO = new clienteDTO($cliente->id_cliente, $cliente->nombre, $cliente->cc_nit, $cliente->administrador, $cliente->direccion, $cliente->ciudad, $cliente->pais, 'inactivo');
-                        $clienteDAO->insert($clienteDTO);          
+                        $clienteDAO->update($clienteDTO);          
 
                     }
 
@@ -103,12 +108,13 @@ class cliente_productoCOORDINATOR extends conexion{
     function deleteByPost(){
         $id_cliente_producto = filter_input(INPUT_POST, 'id_cliente_producto',FILTER_SANITIZE_NUMBER_INT);
         $id_servidor = filter_input(INPUT_POST, 'id_servidor',FILTER_SANITIZE_NUMBER_INT);
+        $id_cliente = filter_input(INPUT_POST, 'id_cliente',FILTER_SANITIZE_NUMBER_INT);
 
-        //actualiza estado servidor
+        //actualiza estado cliente_producto
         $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
-        $cliente_productoDAO->getById($id_cliente_producto);
+        $cliente_producto = $cliente_productoDAO->getById($id_cliente_producto);
 
-        $cliente_productoDTO =  new cliente_productoDTO($cliente_productoDAO->id_cliente_producto, $cliente_productoDAO->id_servidor, $cliente_productoDAO->id_cliente, $cliente_productoDAO->id_producto, $cliente_productoDAO->id_reseller, $cliente_productoDAO->ip_docker, 'cancelado', $cliente_productoDAO->maxcall, $cliente_productoDAO->precio_venta, $cliente_productoDAO->referencia, $cliente_productoDAO->dominio, $cliente_productoDAO->saldo, $cliente_productoDAO->descuento);
+        $cliente_productoDTO =  new cliente_productoDTO($cliente_producto->id_cliente_producto, $cliente_producto->id_servidor, $cliente_producto->id_cliente, $cliente_producto->id_producto, $cliente_producto->id_reseller, $cliente_producto->ip_docker, 'cancelado', $cliente_producto->maxcall, $cliente_producto->precio_venta, $cliente_producto->referencia, $cliente_producto->dominio, $cliente_producto->saldo, $cliente_producto->descuento);
         
         $id_cliente_producto = $cliente_productoDAO->update($cliente_productoDTO);
 
@@ -118,6 +124,17 @@ class cliente_productoCOORDINATOR extends conexion{
         
         $servidorDTO = new servidorDTO($server->id_servidor, $server->id_servidor_detalle, $server->ip, $server->tipo, 'libre', $server->periodicidad_pago, $server->nombre, $server->observacion);
         $servidorDAO->update($servidorDTO);
+
+        //actualiza estado cliente
+        $server_activos_cliente = $cliente_productoDAO->getByIdCustom($id_cliente);
+
+        if($server_activos_cliente == 0){
+            $clienteDAO = new clienteDAO($this->getConexion());
+            $cliente = $clienteDAO->getById($id_cliente);
+            
+            $clienteDTO = new clienteDTO($cliente->id_cliente, $cliente->nombre, $cliente->cc_nit, $cliente->administrador, $cliente->direccion, $cliente->ciudad, $cliente->pais, 'inactivo');
+            $clienteDAO->update($clienteDTO);          
+        } 
     }
 }
 

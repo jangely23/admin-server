@@ -4,7 +4,7 @@
  Email: Jessica.leonel.p@gmail.com   
 */
 
-$pagina_principal = 'lists/cliente.php';
+$pagina_principal = 'lists/cliente_producto.php';
 ?>
 
 <!doctype html>

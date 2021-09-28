@@ -27,7 +27,7 @@ class cliente_productoDAO extends conexion{
 
     //funcion de uso exclusivo para cliente_productoCOORDINATOR
     function getByIdCustom(int $id_cliente){
-        $query = sprintf("SELECT * FROM cliente_producto WHERE id_cliente = %d",$id_cliente);
+        $query = sprintf("SELECT * FROM cliente_producto WHERE id_cliente = %d and estado ='activo'",$id_cliente);
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -65,7 +65,7 @@ class cliente_productoDAO extends conexion{
             $sql_busqueda = sprintf('AND (ip_docker LIKE "%%%1$s%%" OR estado LIKE "%%%1$s%%" OR maxcall  LIKE "%%%1$f%%" OR referencia LIKE "%%%1$s%%" OR dominio LIKE "%%%1$s%%")', $txt_busqueda);
         }
 
-        $query = sprintf("SELECT * FROM cliente_producto WHERE 1=1 %s ORDER BY id_cliente, id_producto limit %d, %d", $sql_busqueda, $inicio, $muestra);
+        $query = sprintf("SELECT * FROM cliente_producto WHERE 1=1 %s ORDER BY estado, id_cliente, id_producto limit %d, %d", $sql_busqueda, $inicio, $muestra);
 
         $result = $this->getConexion()->query($query);
 

@@ -37,7 +37,7 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
 //Fin paginacion
  
 ?>
-<script src="../public/js/cliente_producto.js"></script>
+<script src="../public/js/deshabilitar.js"></script>
 
 <table class="table table-striped">
     <thead class="text-center">
@@ -79,7 +79,7 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
                     <input type="hidden" name="id_cliente_producto" value="<?php echo $cliente_productoDTO->getId_cliente_producto();?>"/>
 
                     <input type="hidden" name="id_servidor" value="<?php echo $cliente_productoDTO->getId_servidor();?>"/>
-                    <input type="hidden" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente();?>"/>
+                    <input type="hidden" name="id_cliente" value="<?php echo $cliente_productoDTO->getId_cliente();?>"/>
                     
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
 
