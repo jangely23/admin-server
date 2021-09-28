@@ -60,7 +60,7 @@ class cliente_productoDAO extends conexion{
     }
 
     function getAllPage(string $txt_busqueda="", int $inicio=0, int $muestra=10): mysqli_result{
-        $sqlBusqueda = '';
+        $sql_busqueda = '';
         if($txt_busqueda != ''){
             $sql_busqueda = sprintf('AND (ip_docker LIKE "%%%1$s%%" OR estado LIKE "%%%1$s%%" OR maxcall  LIKE "%%%1$f%%" OR referencia LIKE "%%%1$s%%" OR dominio LIKE "%%%1$s%%")', $txt_busqueda);
         }
