@@ -64,7 +64,7 @@ class cliente_productoCOORDINATOR extends conexion{
         $update_cliente_producto = $cliente_productoDAO->update($cliente_productoDTO);
 
         //Actualiza el estado del server segun sea el caso
-        var_dump($_POST);
+        
         switch ($estado){
             case "activo":
                 if($estado != $estado_inicial->estado){

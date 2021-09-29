@@ -32,6 +32,7 @@ $servidores = $servidorDAO->getAllByStatus($cliente_productoDTO->getId_servidor(
 $reselleres = $resellerDAO->getAll();
 $productos = $productoDAO->getAllActive();
 
+//Validacion para alerta por haber server disponibles
 if($servidores->num_rows == 0 && $id_cliente_producto == 0){
 ?>    
     <div class=" shadow float-center m-5 p-3 alert alert-info alert-dismissible fade show " role="alert" >

@@ -50,7 +50,7 @@ class cliente_productoDAO extends conexion{
         $query = sprintf("SELECT count(*) as cantidad FROM cliente_producto WHERE 1=1 %s ORDER BY id_cliente, id_producto", $sql_busqueda);
 
         $result = $this->getConexion()->query($query);
-
+            
         if($result){
             $obj = $result->fetch_object();
             return $obj->cantidad;

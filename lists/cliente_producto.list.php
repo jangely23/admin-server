@@ -72,8 +72,11 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
             <td class="columna_no_indispensable botonDeshabilitar"><?php $cliente_productoDTO->getMaxcall(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getReferencia(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $resellerDTO->getNombre(); ?></td>
+            
+            <td><a class="text-success botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_modulo.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-stream"></i></a></td>
 
             <td><a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/cliente_producto.form.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-edit"></i></a></td>
+
             <td>
                 <form action="./process/cliente_producto.process.php" id="formEliminar<?php echo $cliente_productoDTO->getId_cliente_producto();?>">
                     <input type="hidden" name="id_cliente_producto" value="<?php echo $cliente_productoDTO->getId_cliente_producto();?>"/>
@@ -106,10 +109,10 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
 <div class="row ">
     <nav aria-label="Page navigation example" class="d-flex justify-content-center">
         <ul class="pagination">
-        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=1')"><i class="fas fa-fast-backward"></i></a></li>
-        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina-1);?>')"><i class="fas fa-step-backward"></i></a></li>
-        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina+1);?>')"><i class="fas fa-step-forward"></i></a></li>
-        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente.php','id_div_contenido_cliente','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo $paginas;?>')"><i class="fas fa-fast-forward"></i></a></li>
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=1')"><i class="fas fa-fast-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina-1);?>')"><i class="fas fa-step-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina+1);?>')"><i class="fas fa-step-forward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo $paginas;?>')"><i class="fas fa-fast-forward"></i></a></li>
         </ul>
     </nav> 
 </div>
