@@ -1,6 +1,6 @@
 <?php
 /*
- Entidad: prodcuto
+ Entidad: producto
  Author: Jessica Leonel
  Email: Jessica.leonel.p@gmail.com   
 */

@@ -41,3 +41,7 @@ input[type=number] {
     width: 100px;
     height: 100px;
 }
+
+.text-warning {
+    color: red;
+}

@@ -25,6 +25,21 @@ class cliente_producto_moduloDAO extends conexion{
         }
     }
 
+    function getByIdProductoModulo(int $id_cliente_producto_modulo, $id_modulo){
+        $query = sprintf("SELECT * FROM cliente_producto_modulo WHERE id_cliente_producto=%d AND id_modulo=%d",$id_cliente_producto_modulo, $id_modulo);
+        $result = $this->getConexion()->query($query);
+        
+        if($result){
+            if($result->num_rows != 0){
+                return $result->fetch_object();
+            }else{
+                return 0;
+            }
+        }else{
+            throw new Exception("Error al intentar getById() en cliente_producto_moduloDAO");
+        }
+    }
+
     function getAll(int $id_cliente_producto = 0){
         $query = sprintf("SELECT * FROM cliente_producto_modulo WHERE id_cliente_producto=%d",$id_cliente_producto);
         $result = $this->getConexion()->query($query);
