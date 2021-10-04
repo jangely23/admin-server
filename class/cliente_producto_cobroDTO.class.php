@@ -13,7 +13,7 @@ class cliente_producto_cobroDTO {
     private string $observacion;
     private float $valor;
 
-    function __construct(int $id_cliente_producto_cobro, $id_cliente_producto, string $cuenta_cobro, int $numero_cuenta, string $estado, $observacion, float $valor) {
+    function __construct(int $id_cliente_producto_cobro=0, $id_cliente_producto=0, string $cuenta_cobro='', int $numero_cuenta=0, string $estado='', $observacion='', float $valor=0) {
         $this->id_cliente_producto_cobro = $id_cliente_producto_cobro;
         $this->id_cliente_producto = $id_cliente_producto;
         $this->cuenta_cobro = $cuenta_cobro;

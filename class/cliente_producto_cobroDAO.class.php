@@ -25,6 +25,21 @@ class cliente_producto_cobroDAO extends conexion{
         }
     }
 
+    function getAcountEnd(){
+        $query = "SELECT * FROM cliente_producto_cobro ORDER BY numero_cuenta DESC LIMIT 1";
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            if($result->num_rows != 0){
+                return $result->fetch_object();
+            }else{
+                return 0;
+            }
+        }else{
+            throw new Exception("error al intentar getAcountEnd() en cliente_producto_cobroDAO");
+        }
+    }
+
     function getCount(string $txt_busqueda = ''){
         $sql_busqueda='';
 

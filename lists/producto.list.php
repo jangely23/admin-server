@@ -35,19 +35,6 @@ $productos = $productoDAO->getAll($txt_busqueda);
             <td>
                 <a class="text-warning" href="#" onclick="abrirPagina('forms/producto.form.php','contenido','&id_producto=<?php echo $productoDTO->getId_producto();?>')"> <i class="fas fa-edit"></i> </a>
             </td>
-            
-            <td>
-                <form action="./process/producto.process.php" id="formEliminar<?php echo $productoDTO->getId_producto();?>">
-
-                    <input type="hidden" name="id_producto" value="<?php echo $productoDTO->getId_producto();?>"/>
-
-                    <input type="hidden" name="modo" id="modo" value="eliminar"/>
-                    
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $productoDTO->getId_producto();?>'),'',`abrirPagina('lists/producto.php', 'contenido', '&txt_busqueda='+$('#id_txt_busqueda').val());`)">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </form>
-            </td>
         
         </tr>
         <?php } ?>

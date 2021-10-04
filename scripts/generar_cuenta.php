@@ -1,120 +1,63 @@
 <?php
+include "../config/conexion.php";
+include "../class/conexion.class.php";
+include "../class/cliente_producto_cobroDAO.class.php";
+include "../class/cliente_producto_cobroDTO.class.php";
+include "../class/cliente_productoDAO.class.php";
+include "../class/cliente_productoDTO.class.php";
+include "../class/clienteDAO.class.php";
+include "../class/clienteDTO.class.php";
+include "../class/servidorDAO.class.php";
+include "../class/servidorDTO.class.php";
 
-require '../vendor/autoload.php';
+$cliente_productoDTO = new cliente_productoDTO();
+$cliente_productoDAO = new cliente_productoDAO($conexion);
 
-use Dompdf\Dompdf;
-use Dompdf\Options;
+$clienteDTO = new clienteDTO();
+$servidorDTO = new servidorDTO();
+$cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
 
+$numero_cuenta = 0;
+$nombre_cliente = "";
+$ip_servidor = "";
+$referencia = "";
+$valor_pagar = 0;
 
+//Establece fechas de facturacion para cuenta de cobro y obtiene los cliente_producto a cobrar
+date_default_timezone_set('America/Bogota');
+$x_minuto = 'no';
+$fecha_actual = date('d-m-Y');
 
-$fecha_corte_inicio = date("d/m/Y");
-$fecha_corte_final = date("d/m/Y", strtotime($fecha_corte_inicio." -1 month "));
+$inicio_corte = date("d-m-Y",strtotime($fecha_actual."+9 days"));
+$fin_corte = date("d-m-Y",strtotime($inicio_corte."+1 months, -1 days"));
 
-ob_start();
-?>
+if(date('d',strtotime($fecha_actual))==16){ //validacion fechas de fcovoip y simple
+    $fecha_pago = date("d-m-Y",strtotime($fecha_actual."+9 days"));
+    $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days"));
 
-<!doctype html>
-<html lang="es">
-    <head>
-        <style>
-            @page {
-                margin-top: 15px;
-                margin-bottom: 15px;
-                margin-left: 30px;
-                margin-right: 30px;
-                font-size: small;
-            }
+    $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
 
-            header {
-                position: static;
-                height: auto;
-                text-align: left;
-                margin-left:35px;
-            }
+}else if(date('d',strtotime($fecha_actual))==26){ //validacion fechas de paso x min
+    $fecha_pago = date("t-m-Y", strtotime($fecha_actual));
+    $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days")); 
+    $x_minuto = 'si';
 
-            main {
-                position: relative;
-                text-align: center;
-                margin-left:40px;
-            }
-
-            .organizar{
-                text-align: left;
-            }
-
-            footer {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                text-align: center;
-                color:dimgrey;
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <img src="../public/images/logo.png" alt=""/>
-            <br>
-        </header>
-
-        <footer>
-            <p>Cra. 6 # 53-29 Oficina 804 Ed. Torreón Empresarial Santa Monica <br>Celular y WhatsApp (+57) 3009120695 <br>Ibagué - Tolima</p>
-        </footer>
-
-        <main> 
-            <div>
-                <p><?php echo $nombre." NIT ".$cc_nit;?></p><br>
-                <p>Debe a:</p><br><br>
-                <p>FCOSYSTEMS <br>NIT: 93412119-4</p>
-                <p>Por concepto: Alquiler Servidor<strong> <?php echo $ip;?> </strong> <br>del <?php echo $fecha_corte_inicio." al ".$fecha_corte_final;?> </p><br><br>
-                <p>Valor de $ <?php echo $valor;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fecha_corte_inicio;?> <br>Fecha límite de pago: <?php echo $fecha_pago;?> <br>Fecha de suspension: <?php echo $fecha_suspension;?></p><br><br><br>
-                </div>
-        
-                <table>
-                    <tr>
-                        <td rowspan="4"><img src="../public/images/efectylogo.png" alt=""/></td>
-                    </tr>
-                    <tr> 
-                        <td>NOMBRE DEL CONVENIO:</td>
-                        <td><strong> RECARGAS VOIP </strong></td>
-                    </tr>
-                    <tr> 
-                        <td>CODIGO DEL PROYECTO:</td>
-                        <td><strong> 110365 </strong></td>
-                    </tr>
-                    <tr> 
-                        <td>REFERENCIA DEL PAGO:</td>
-                        <td><strong><?php echo $referencia;?></strong></td>
-                    </tr>
-                </table><br><br>
-                <div class="organizar">
-                    <p>Una vez realizado el pago enviar el comprobante al correo electrónico contabilidad@fcovoip.com<br><br><br></p>
-                    <br><br><br>
-                    <p><strong>DEPARTAMENTO CONTABLE.</strong><br>Tel: (+57)3009120695 <br>contabilidad@fcovoip.com</p>
-                </div>
-                
-            </div>
-        </main> 
+    $cliente_producto = $cliente_productoDAO->getAllByCheck($x_minuto);
+}
 
 
-    </body>
-</html>
+while($obj = $cliente_producto->fetch_object()){
+    $cliente_productoDTO->map($obj);
+    $clienteDTO->loadById($cliente_productoDTO->getId_cliente(), $conexion);
+    $servidorDTO->loadById($cliente_productoDTO->getId_servidor(), $conexion);
+    $cuenta_cobro = $cliente_producto_cobroDAO->getAcountEnd();
 
-<?php
-$html=ob_get_clean();
-$options = new Options();
-$options->set('defaultFont', ' Helvetica');
-$options->setIsHtml5ParserEnabled(true);
-$options->setIsRemoteEnabled(true);
+    $numero_cuenta = $cuenta_cobro->numero_cuenta + 1;
+    $nombre_cliente = $clienteDTO->getNombre();
+    $ip_servidor = $servidorDTO->getIp();
+    $referencia = $cliente_productoDTO->getReferencia();
+    $valor_pagar = $cliente_productoDTO->getReferencia();
 
-$dompdf = new Dompdf($options);
-$dompdf->setBasePath(dirname(__FILE__));
+}
 
-$dompdf->loadHtml($html);
-$dompdf->setPaper('A4');
-$dompdf->render();
-$output = $dompdf->output();
-file_put_contents("../public/pdf/prueba$nombre$numero_cuenta.pdf", $output);
-//$dompdf->stream('report_'.date("dmYHis"));
 ?>

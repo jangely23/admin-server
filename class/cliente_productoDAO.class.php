@@ -76,6 +76,24 @@ class cliente_productoDAO extends conexion{
         }
     }
 
+    //funcion de uso exclusivo para generar_cuenta 
+    function getAllByCheck(int $x_minuto=0): mysqli_result{
+        
+        if($x_minuto == 0){
+            $query = sprintf("SELECT * FROM cliente_producto WHERE estado = 'activo' AND id_producto != 14 AND id_producto!=15  ORDER BY id_cliente, id_producto");
+        }else{
+            $query = sprintf("SELECT * FROM cliente_producto WHERE estado = 'activo' AND id_producto = 15 ORDER BY id_cliente, id_producto");
+        }
+
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return $result;
+        }else{
+            throw new Exception("Error al intentar getAllByCheck() en cliente_productoDAO");
+        }
+    }
+
     function insert(cliente_productoDTO $cliente_productoDTO){
         $query = sprintf('INSERT INTO cliente_producto (id_servidor, id_cliente, id_producto, id_reseller, ip_docker, estado, maxcall, precio_venta, referencia, dominio, saldo, descuento) VALUES (%d, %d, %d, %d, "%s", "%s", "%s", %f, "%s", "%s", %f , %f)', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento());
 
