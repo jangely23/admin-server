@@ -5,9 +5,7 @@ require '../vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-
-
-ob_start();
+function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar){
 ?>
 
 <!doctype html>
@@ -61,11 +59,11 @@ ob_start();
 
         <main> 
             <div>
-                <p><?php echo $nombre." NIT ".$cc_nit;?></p><br>
+                <p><?php echo $nombre_cliente."</br> NIT ".$cc_nit;?></p><br>
                 <p>Debe a:</p><br><br>
-                <p>FCOSYSTEMS <br>NIT: 93412119-4</p>
-                <p>Por concepto: Alquiler Servidor<strong> <?php echo $ip;?> </strong> <br>del <?php echo $inicio_corte." al ".$fin_corte;?> </p><br><br>
-                <p>Valor de $ <?php echo $valor;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fecha_actual;?> <br>Fecha límite de pago: <?php echo $fecha_pago;?> <br>Fecha de suspension: <?php echo $fecha_suspension;?></p><br><br><br>
+                <p>FCOSYSTEMS </br>NIT: 93412119-4</p>
+                <p>Por concepto: Alquiler Servidor<strong> <?php echo $ip_servidor;?> </strong> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
+                <p>Valor de $ <?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[0];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
                 </div>
         
                 <table>
@@ -112,6 +110,8 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');
 $dompdf->render();
 $output = $dompdf->output();
-file_put_contents("../public/pdf/prueba$nombre$numero_cuenta.pdf", $output);
+file_put_contents("../public/pdf/".$nombre_cliente."_".$numero_cuenta.".pdf", $output);
 //$dompdf->stream('report_'.date("dmYHis"));
+return $nombre_cliente."_".$numero_cuenta.".pdf";
+}
 ?>

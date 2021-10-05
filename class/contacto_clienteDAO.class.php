@@ -44,9 +44,22 @@ class contacto_clienteDAO extends conexion{
         if($result){
             return $result;
         }else{
+            throw new Exception("Error al intentar getAllPage en contacto_clienteDAO");
+        }
+    }
+
+    //funcion para uso de el envio de emails
+    function getAllEmail(int $id_cliente=0): mysqli_result{
+        $query = sprintf("SELECT email FROM contacto_cliente WHERE id_cliente=%d ",$id_cliente);
+        $result = $this->getConexion()->query($query);
+        
+        if($result){
+            return $result;
+        }else{
             throw new Exception("Error al intentar getAll en contacto_clienteDAO");
         }
     }
+
 
     function insert(contacto_clienteDTO $contacto_clienteDTO){
         $query = sprintf("INSERT INTO contacto_cliente (id_cliente, telefono, celular,email,otro) VALUES ('%d','%s','%s','%s','%s')", $contacto_clienteDTO->getIdCliente(), $contacto_clienteDTO->getTelefono(), $contacto_clienteDTO->getCelular(),$contacto_clienteDTO->getEmail(),$contacto_clienteDTO->getOtro());
