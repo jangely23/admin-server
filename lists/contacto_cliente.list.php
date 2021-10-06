@@ -42,7 +42,7 @@ $datos_contacto = $contacto_clienteDAO->getAllPage($id_cliente, $registro_inicio
             <td class="columna_no_indispensable"><?php echo $contacto_clienteDTO->getOtro(); ?></td>
             
             <td>
-                <a class="text-warning" href="#" onclick="abrirPagina('forms/contacto_cliente.form.php','contenido','&id_contacto_cliente=<?php echo $contacto_clienteDTO->getIdContactoCliente();?>')"> <i class="fas fa-edit"></i> </a>
+                <a class="text-warning" href="#" onclick="abrirPagina('forms/contacto_cliente.form.php','contenido','&id_contacto_cliente=<?php echo $contacto_clienteDTO->getIdContactoCliente();?>&id_cliente=<?php echo$id_cliente;?>')"> <i class="fas fa-edit"></i> </a>
             </td>
             
             <td>

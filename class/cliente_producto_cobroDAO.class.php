@@ -25,6 +25,7 @@ class cliente_producto_cobroDAO extends conexion{
         }
     }
 
+    //uso exclusivo para la generacion_envio_cuenta
     function getAcountEnd(){
         $query = "SELECT * FROM cliente_producto_cobro ORDER BY numero_cuenta DESC LIMIT 1";
         $result = $this->getConexion()->query($query);
@@ -40,31 +41,32 @@ class cliente_producto_cobroDAO extends conexion{
         }
     }
 
-    function getCount(string $txt_busqueda = ''){
+    function getCount(string $txt_busqueda = '', int $id_cliente_producto){
         $sql_busqueda='';
 
         if($txt_busqueda != ''){
             $sql_busqueda = sprintf('AND (cuenta_cobro LIKE "%%%%1$s%%" or numero_cuenta LIKE "%%%%1$d%%" or estado LIKE "%%%%1$s%%" or observacion LIKE "%%%%1$s%%")', $txt_busqueda);
         }
 
-        $query = sprintf("SELECT count(*) as cantidad FROM cliente_producto_cobro WHERE 1=1 %s", $sql_busqueda);
+        $query = sprintf("SELECT count(*) as cantidad FROM cliente_producto_cobro WHERE id_cliente_producto=%d %s",$id_cliente_producto, $sql_busqueda);
         $result = $this->getConexion()->query($query);
 
         if($result){
-            return $result->cantidad;
+            $obj = $result->fetch_object();
+            return $obj->cantidad;
         }else{
             throw new Exception("error al intentar getCount() en cliente_producto_cobroDAO");
         }
     }
 
-    function getAllPage(string $txt_busqueda = '',int $inicio, $muestra){
+    function getAllPage(string $txt_busqueda = '', int $id_cliente_producto, $inicio, $muestra){
         $sql_busqueda='';
 
         if($txt_busqueda != ''){
             $sql_busqueda = sprintf('AND (cuenta_cobro LIKE "%%%%1$s%%" or numero_cuenta LIKE "%%%%1$d%%" or estado LIKE "%%%%1$s%%" or observacion LIKE "%%%%1$s%%")', $txt_busqueda);
         }
 
-        $query = sprintf("SELECT * FROM cliente_producto_cobro WHERE 1=1 %s ORDER BY fecha_corte, estado LIMIT %d, %d", $sql_busqueda, $inicio, $muestra);
+        $query = sprintf("SELECT * FROM cliente_producto_cobro WHERE id_cliente_producto=%d %s ORDER BY numero_cuenta DESC LIMIT %d, %d",$id_cliente_producto, $sql_busqueda, $inicio, $muestra);
         $result = $this->getConexion()->query($query);
 
         if($result){

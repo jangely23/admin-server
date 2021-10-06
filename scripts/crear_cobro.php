@@ -5,7 +5,11 @@ require '../vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+
 function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar){
+ob_start();
+
+$image = base64_encode(file_get_contents('/var/www/html/admin_server/public/images/logo.jpg'));
 ?>
 
 <!doctype html>
@@ -16,7 +20,7 @@ function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_serv
                 margin-top: 15px;
                 margin-bottom: 15px;
                 margin-left: 30px;
-                margin-right: 30px;
+                margin-right: 50px;
                 font-size: small;
             }
 
@@ -30,7 +34,6 @@ function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_serv
             main {
                 position: relative;
                 text-align: center;
-                margin-left:40px;
             }
 
             .organizar{
@@ -49,7 +52,7 @@ function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_serv
 
     <body>
         <header>
-            <img src="../public/images/logo.png" alt=""/>
+            <img src="<?php echo $image; ?>" alt=""/>
             <br>
         </header>
 
@@ -68,7 +71,7 @@ function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_serv
         
                 <table>
                     <tr>
-                        <td rowspan="4"><img src="../public/images/efectylogo.png" alt=""/></td>
+                        <td rowspan="4"><img src="../public/images/efectylogo.jpg" alt=""/></td>
                     </tr>
                     <tr> 
                         <td>NOMBRE DEL CONVENIO:</td>
@@ -104,7 +107,7 @@ $options->setIsHtml5ParserEnabled(true);
 $options->setIsRemoteEnabled(true);
 
 $dompdf = new Dompdf($options);
-$dompdf->setBasePath(dirname(__FILE__));
+//$dompdf->setBasePath(dirname(__FILE__));
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');

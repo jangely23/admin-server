@@ -54,6 +54,7 @@ class contacto_clienteDAO extends conexion{
         $result = $this->getConexion()->query($query);
         
         if($result){
+            
             return $result;
         }else{
             throw new Exception("Error al intentar getAll en contacto_clienteDAO");
@@ -73,7 +74,8 @@ class contacto_clienteDAO extends conexion{
     }
 
     function update(contacto_clienteDTO $contacto_clienteDTO){
-        $query = sprintf("UPDATE contacto_cliente SET id_cliente='%d', telefono='%s', celular='%s', email='%s', otro='%s' WHERE id_contacto_cliente='%s'", $contacto_clienteDTO->getIdCliente(), $contacto_clienteDTO->getTelefono(), $contacto_clienteDTO->getCelular(),$contacto_clienteDTO->getEmail(),$contacto_clienteDTO->getOtro(), $contacto_clienteDTO->getIdContactoCliente());
+        $query = sprintf("UPDATE contacto_cliente SET id_cliente='%d', telefono='%s', celular='%s', email='%s', otro='%s' WHERE id_contacto_cliente='%d'", $contacto_clienteDTO->getIdCliente(), $contacto_clienteDTO->getTelefono(), $contacto_clienteDTO->getCelular(),$contacto_clienteDTO->getEmail(),$contacto_clienteDTO->getOtro(), $contacto_clienteDTO->getIdContactoCliente());
+        var_dump($query);
         $result = $this->getConexion()->query($query);
 
         if($result){

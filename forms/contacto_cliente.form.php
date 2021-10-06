@@ -5,7 +5,7 @@ require '../class/contacto_clienteDAO.class.php';
 require '../class/contacto_clienteDTO.class.php';
 
 $id_contacto_cliente = filter_input(INPUT_POST,'id_contacto_cliente',FILTER_SANITIZE_NUMBER_INT)??0;
-$id_cliente = filter_input(INPUT_POST,'id_cliente',FILTER_SANITIZE_NUMBER_INT)??0;
+$id_cliente = filter_input(INPUT_POST,'id_cliente',FILTER_SANITIZE_NUMBER_INT);
 
 $contacto_clienteDTO = new contacto_clienteDTO();
 $contacto_clienteDTO->loadById($id_contacto_cliente, $conexion);

@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 //crear el objeto $mail de PHPmailer
 $mail = new PHPMailer(true);
@@ -34,27 +34,28 @@ function enviarEmail(int $id_cliente, string $adjunto ='', $tipo_email_enviar,  
     //parametros de envio
     $mail->setFrom('contabilidad@fcovoip.com','Contabilidad FCOVOIP');//correo de quien envia
     
-   
-    $mail->addAddress($datos_contacto);
-    
-    
+    $count = 0;
+    $datos=$datos_contacto->fetch_all();
+    foreach($datos as $row){
+        foreach($row as $valor){
+            $count = $count + 1;
+            $mail->addAddress($valor);
+            var_dump($valor);
+        }    
+    }
 
-    $mail->addAttachment('/var/www/html/envio-de-cuentas-cobro/cuentas_de_cobro/'.$adjunto, $clienteDTO->getNombre().'.pdf');
+   
+    $mail->addAttachment('../public/pdf/'.$adjunto, $clienteDTO->getNombre().'.pdf');
     $mail->CharSet = 'UTF-8';
     $mail->Subject = "Cuenta cobro servidor IP  $ip_servidor";//asunto del correo
     $mail->Body = '<p>Muy buen dia</p><p>Sr(a) '.$clienteDTO->getNombre().'</p><p>Mediante el presente correo se anexa la cuenta cobro del  servicio que usted adquirio con nuestra empresa, el no pago genera el riesgo de suspensión del servicio.</p><p>
     Cualquier inquietud por favor comunicarse a este numero telefonico +57 3009120695.</p>'; //contenido del mensaje
     $mail->IsHTML(true); // permite el uso de HTML
-
-        if($mail->send()){
-        echo "Enviado\n$clienteDTO->getNombre()<br>";
-        $mail->clearAddresses();
-        $mail->clearAttachments();
-        } else {
-        echo "No fue enviado\n$clienteDTO->getNombre()<br>".'error';
-        $mail->clearAddresses();
-        $mail->clearAttachments();
-        }
+    $mail->send();
+        
+    $mail->clearAddresses();
+    $mail->clearAttachments();
+      
     }catch (Exception $e) {
         echo "Email no pudo ser enviado. Error: {$mail->ErrorInfo}";
     }

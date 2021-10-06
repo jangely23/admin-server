@@ -50,7 +50,7 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
             <th scope="row" class="columna_no_indispensable">Canales</th>
             <th scope="row" class="columna_no_indispensable">Ref. Pago</th>
             <th scope="row" class="columna_no_indispensable">Reseller</th>
-            <th scope="row" colspan="3">Acciones</th>                    
+            <th scope="row" colspan="5">Acciones</th>                    
         </tr>
     </thead>
     <tbody>
@@ -72,7 +72,11 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
             <td class="columna_no_indispensable botonDeshabilitar"><?php $cliente_productoDTO->getMaxcall(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getReferencia(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $resellerDTO->getNombre(); ?></td>
-            
+
+            <td><a class="text-primary botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="far fa-money-bill-alt"></i></a></td>
+
+            <td><a class="text-secondary botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_cobro.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-file-invoice-dollar"></i></a></td>
+
             <td><a class="text-success botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_modulo.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-stream"></i></a></td>
 
             <td><a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/cliente_producto.form.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-edit"></i></a></td>

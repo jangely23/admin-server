@@ -46,8 +46,8 @@ class cliente_producto_cobroDTO {
     public function setValor(float $valor): void { $this->valor = $valor; }
 
     function map($obj){
-        $this->setId_cliente_producto_cobro($obj->id_cliente_proucto_cobro);
-        $this->setId_cliente_producto($obj->id_cliente_proucto);
+        $this->setId_cliente_producto_cobro($obj->id_cliente_producto_cobro);
+        $this->setId_cliente_producto($obj->id_cliente_producto);
         $this->setCuenta_cobro($obj->cuenta_cobro);
         $this->setNumero_cuenta($obj->numero_cuenta);
         $this->setEstado($obj->estado);
