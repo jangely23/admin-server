@@ -44,10 +44,11 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
         <tr>
             <th scope="row">Cliente</th>
             <th scope="row">IP</th>
-            <th scope="row">Dominio</th>
+            <th scope="row" class="columna_no_indispensable">Dominio</th>
             <th scope="row">Estado</th>
             <th scope="row">Producto</th>
             <th scope="row" class="columna_no_indispensable">Canales</th>
+            <th scope="row" class="columna_no_indispensable">Saldo</th>
             <th scope="row" class="columna_no_indispensable">Ref. Pago</th>
             <th scope="row" class="columna_no_indispensable">Reseller</th>
             <th scope="row" colspan="5">Acciones</th>                    
@@ -66,18 +67,19 @@ $cliente_productos = $cliente_productoDAO->getAllPage($txt_busqueda, $registroIn
         <tr>
             <td class="botonDeshabilitar"><?php echo $clienteDTO->getNombre(); ?></td>
             <td class="botonDeshabilitar"><?php echo $servidorDTO->getIp(); ?></td>
-            <td class="botonDeshabilitar"><?php echo $cliente_productoDTO->getDominio(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getDominio(); ?></td>
             <td class="estadoClienteProducto botonDeshabilitar"><?php echo $cliente_productoDTO->getEstado(); ?></td>
             <td class="botonDeshabilitar"><?php echo $productoDTO->getNombre()." ".$productoDTO->getVersion(); ?></td>
-            <td class="columna_no_indispensable botonDeshabilitar"><?php $cliente_productoDTO->getMaxcall(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getMaxcall(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getSaldo(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_productoDTO->getReferencia(); ?></td>
             <td class="columna_no_indispensable botonDeshabilitar"><?php echo $resellerDTO->getNombre(); ?></td>
 
-            <td><a class="text-primary botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="far fa-money-bill-alt"></i></a></td>
+            <td><a class="text-info botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="far fa-money-bill-alt"></i></a></td>
 
-            <td><a class="text-secondary botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_cobro.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-file-invoice-dollar"></i></a></td>
+            <td><a class="text-success botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_cobro.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-file-invoice-dollar"></i></a></td>
 
-            <td><a class="text-success botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_modulo.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-stream"></i></a></td>
+            <td><a class="text-primary botonDeshabilitar" href="#" onclick="abrirPagina('lists/cliente_producto_modulo.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-stream"></i></a></td>
 
             <td><a class="text-warning botonDeshabilitar" href="#" onclick="abrirPagina('forms/cliente_producto.form.php','contenido','&id_cliente_producto=<?php echo $cliente_productoDTO->getId_cliente_producto();?>')"><i class="fas fa-edit"></i></a></td>
 

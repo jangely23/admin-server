@@ -19,7 +19,7 @@ $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda', FILTER_SANITIZE_STRING);
 </fieldset>
 
 <div class="row">
-    <div id="id_div_contenido_cliente_producto " class="p-3 table-responsive">
+    <div id="id_div_contenido_cliente_producto_cobro " class="p-3 table-responsive">
         <?php require 'cliente_producto_cobro.list.php' ; ?>        
     </div>
 </div>

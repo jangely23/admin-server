@@ -11,14 +11,14 @@ class cliente_productoDTO{
     private int $id_reseller;
     private string $ip_docker;
     private string $estado;
-    private string $maxcall;
+    private int $maxcall;
     private float $precio_venta;
     private string $referencia;
     private string $dominio;
     private float $saldo;
     private float $descuento;
 
-    function __construct(int $id_cliente_producto=0, $id_servidor=0, $id_cliente=0, $id_producto=0, $id_reseller=0,string $ip_docker='', $estado='', $maxcall='', float $precio_venta=0, string $referencia='', $dominio='', float $saldo=0, $descuento=0){
+    function __construct(int $id_cliente_producto=0, $id_servidor=0, $id_cliente=0, $id_producto=0, $id_reseller=0,string $ip_docker='', $estado='',int $maxcall=0, float $precio_venta=0, string $referencia='', $dominio='', float $saldo=0, $descuento=0){
         $this->id_cliente_producto = $id_cliente_producto;
         $this->id_servidor = $id_servidor;
         $this->id_cliente = $id_cliente;

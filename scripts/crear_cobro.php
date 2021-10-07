@@ -4,12 +4,19 @@ require '../vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+//use Dompdf\Image\Cache;
+//use Dompdf\Helpers;
+//use Dompdf\Canvas;
 
 function crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar){
 ob_start();
 
-$image = base64_encode(file_get_contents('/var/www/html/admin_server/public/images/logo.jpg'));
+$logo= '../public/images/logo.jpg';
+$logoBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($logo));
+
+$logoefecty= '../public/images/efectylogo.jpg';
+$logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($logoefecty));
+
 ?>
 
 <!doctype html>
@@ -19,25 +26,28 @@ $image = base64_encode(file_get_contents('/var/www/html/admin_server/public/imag
             @page {
                 margin-top: 15px;
                 margin-bottom: 15px;
-                margin-left: 30px;
+                margin-left: 50px;
                 margin-right: 50px;
                 font-size: small;
             }
 
             header {
+                bottom: 5px;
                 position: static;
                 height: auto;
                 text-align: left;
-                margin-left:35px;
+                margin-left:30px;
             }
 
             main {
                 position: relative;
                 text-align: center;
+                margin-left:30px;
             }
 
             .organizar{
                 text-align: left;
+                margin-left:30px;
             }
 
             footer {
@@ -52,7 +62,8 @@ $image = base64_encode(file_get_contents('/var/www/html/admin_server/public/imag
 
     <body>
         <header>
-            <img src="<?php echo $image; ?>" alt=""/>
+            <img src="<?php echo $logoBase64;?>" alt=""/>
+            <p>Ibagué, <?php echo $fechas[0];?></p>
             <br>
         </header>
 
@@ -62,16 +73,17 @@ $image = base64_encode(file_get_contents('/var/www/html/admin_server/public/imag
 
         <main> 
             <div>
-                <p><?php echo $nombre_cliente."</br> NIT ".$cc_nit;?></p><br>
-                <p>Debe a:</p><br><br>
+                <h3><?php echo $nombre_cliente;?></h3>
+                <p> NIT &nbsp; <?php echo " ".$cc_nit;?></p><br>
+                <p>Debe a:</p><br>
                 <p>FCOSYSTEMS </br>NIT: 93412119-4</p>
-                <p>Por concepto: Alquiler Servidor<strong> <?php echo $ip_servidor;?> </strong> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
-                <p>Valor de $ <?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[0];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
+                <p>Por concepto: Alquiler Servidor IP <?php echo $ip_servidor;?> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
+                <p>Valor de $<?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[0];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
                 </div>
         
                 <table>
                     <tr>
-                        <td rowspan="4"><img src="../public/images/efectylogo.jpg" alt=""/></td>
+                        <td rowspan="4"><img src="<?php echo $logoefectyBase64;?>" alt=""/></td>
                     </tr>
                     <tr> 
                         <td>NOMBRE DEL CONVENIO:</td>
@@ -88,7 +100,7 @@ $image = base64_encode(file_get_contents('/var/www/html/admin_server/public/imag
                 </table><br><br>
                 <div class="organizar">
                     <p>Una vez realizado el pago enviar el comprobante al correo electrónico contabilidad@fcovoip.com<br><br><br></p>
-                    <br><br><br>
+                    <br><br>
                     <p><strong>DEPARTAMENTO CONTABLE.</strong><br>Tel: (+57)3009120695 <br>contabilidad@fcovoip.com</p>
                 </div>
                 
@@ -107,7 +119,7 @@ $options->setIsHtml5ParserEnabled(true);
 $options->setIsRemoteEnabled(true);
 
 $dompdf = new Dompdf($options);
-//$dompdf->setBasePath(dirname(__FILE__));
+$dompdf->setBasePath(dirname(__FILE__));
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');

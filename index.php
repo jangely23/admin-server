@@ -41,9 +41,6 @@ $pagina_principal = 'lists/cliente_producto.php';
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Contabilidad</a>    
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link " aria-current="page" href="#" onclick="abrirPagina('./lists/administracion.php','contenido','');">Administracion</a>    
                         </li>
                     </ul>
@@ -56,7 +53,7 @@ $pagina_principal = 'lists/cliente_producto.php';
             </div>
         </nav>
 
-        <div class="container shadow p-3 mt-3 bg-white rounded">
+        <div class="container shadow pt-3 mt-3 bg-white rounded">
             <div class="card bg-white border-0">
                 <div class="card-body" id="contenido">               
                 </div>

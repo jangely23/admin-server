@@ -1,5 +1,5 @@
 <?php
-header('Content-type: image/png'); 
+header('Content-type: image/jpeg'); 
 include "../config/conexion.php";
 include "../class/conexion.class.php";
 include "../class/cliente_producto_cobroDAO.class.php";
@@ -32,13 +32,13 @@ date_default_timezone_set('America/Bogota');
 $inicio_corte = date("d-m-Y",strtotime($fecha_actual."+9 days"));
 $fin_corte = date("d-m-Y",strtotime($inicio_corte."+1 months, -1 days"));
 
-if(date('d',strtotime($fecha_actual))==16){ //validacion fechas de fcovoip y simple
+if(date('d',strtotime($fecha_actual))==07){ //validacion fechas de fcovoip y simple
     $fecha_pago = date("d-m-Y",strtotime($fecha_actual."+9 days"));
     $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days"));
 
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
 
-}else if(date('d',strtotime($fecha_actual))==06){ //validacion fechas de paso x min
+}else if(date('d',strtotime($fecha_actual))==26){ //validacion fechas de paso x min
     $fecha_pago = date("t-m-Y", strtotime($fecha_actual));
     $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days")); 
     $x_minuto = 1;
@@ -65,18 +65,17 @@ while($obj = $cliente_productos->fetch_object()){
     
     if(file_exists("../public/pdf/$nombre_cuenta")){
 
-       //inserta registro en la DB
-       $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, 'generada', '', $valor_pagar);
-       $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
-       $result = $cliente_producto_cobroDAO->insert($cliente_producto_cobroDTO);
+        //inserta registro en la DB
+        $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, 'generada', '', $valor_pagar);
+        $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
+        $result = $cliente_producto_cobroDAO->insert($cliente_producto_cobroDTO);
 
-       //envia el email
-        //enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
-        //sleep(5);
+        //envia el email
+        enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
+        sleep(3);
+        
     }else{
         throw new Exception("No existe pdf de Cuenta de cobro");
     } 
 
 }
-
-?>
