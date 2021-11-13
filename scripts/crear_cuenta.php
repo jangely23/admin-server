@@ -75,10 +75,9 @@ $logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($
             <div>
                 <h3><?php echo $nombre_cliente;?></h3>
                 <p> NIT &nbsp; <?php echo " ".$cc_nit;?></p><br>
-                <p>Debe a:</p><br>
-                <p>FCOSYSTEMS </br>NIT: 93412119-4</p>
+                <p>Debe a:<br> FCOSYSTEMS </br>NIT: 93412119-4</p>
                 <p>Por concepto: Alquiler Servidor IP <?php echo $ip_servidor;?> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
-                <p>Valor de $<?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[0];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
+                <p>Valor de $<?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[1];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
                 </div>
         
                 <table>

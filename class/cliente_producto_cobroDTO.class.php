@@ -9,15 +9,21 @@ class cliente_producto_cobroDTO {
     private int $id_cliente_producto;
     private string $cuenta_cobro;
     private int $numero_cuenta;
+    private string $fecha_corte;
+    private string $fecha_pago;
+    private string $fecha_suspension;
     private string $estado;
     private string $observacion;
     private float $valor;
 
-    function __construct(int $id_cliente_producto_cobro=0, $id_cliente_producto=0, string $cuenta_cobro='', int $numero_cuenta=0, string $estado='', $observacion='', float $valor=0) {
+    function __construct(int $id_cliente_producto_cobro=0, $id_cliente_producto=0, string $cuenta_cobro='', int $numero_cuenta=0, string $fecha_corte='', $fecha_pago='', $fecha_suspension='', $estado='', $observacion='', float $valor=0) {
         $this->id_cliente_producto_cobro = $id_cliente_producto_cobro;
         $this->id_cliente_producto = $id_cliente_producto;
         $this->cuenta_cobro = $cuenta_cobro;
         $this->numero_cuenta = $numero_cuenta;
+        $this->fecha_corte = $fecha_corte;
+        $this->fecha_pago = $fecha_pago;
+        $this->fecha_suspension = $fecha_suspension;
         $this->estado = $estado;
         $this->observacion = $observacion;
         $this->valor = $valor;
@@ -45,11 +51,23 @@ class cliente_producto_cobroDTO {
     public function getValor(): float { return $this->valor; }
     public function setValor(float $valor): void { $this->valor = $valor; }
 
+    public function getFecha_corte(): string { return $this->fecha_corte; }
+    public function setFecha_corte(string $fecha_corte): void { $this->fecha_corte = $fecha_corte; }
+
+    public function getFecha_pago(): string { return $this->fecha_pago; }
+    public function setFecha_pago(string $fecha_pago): void { $this->fecha_pago = $fecha_pago; }
+
+    public function getFecha_suspension(): string { return $this->fecha_suspension; }
+    public function setFecha_suspension(string $fecha_suspension): void { $this->fecha_suspension = $fecha_suspension; }
+    
     function map($obj){
         $this->setId_cliente_producto_cobro($obj->id_cliente_producto_cobro);
         $this->setId_cliente_producto($obj->id_cliente_producto);
         $this->setCuenta_cobro($obj->cuenta_cobro);
         $this->setNumero_cuenta($obj->numero_cuenta);
+        $this->setFecha_corte($obj->fecha_corte);
+        $this->setFecha_pago($obj->fecha_pago);
+        $this->setFecha_suspension($obj->fecha_suspension);
         $this->setEstado($obj->estado);
         $this->setObservacion($obj->observacion);
         $this->setValor($obj->valor);
@@ -66,5 +84,5 @@ class cliente_producto_cobroDTO {
             return false;
         }
     }
+
 }
-?>

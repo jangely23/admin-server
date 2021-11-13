@@ -12,11 +12,11 @@ class cliente_productoCOORDINATOR extends conexion{
         $ip_docker = filter_input(INPUT_POST, 'ip_docker',FILTER_SANITIZE_STRING);
         $estado = filter_input(INPUT_POST, 'estado',FILTER_SANITIZE_STRING);
         $maxcall = filter_input(INPUT_POST, 'maxcall',FILTER_SANITIZE_STRING);
-        $precio_venta = filter_input(INPUT_POST, 'precio_venta',FILTER_SANITIZE_NUMBER_FLOAT);
+        $precio_venta = filter_input(INPUT_POST, 'precio_venta',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $referencia = filter_input(INPUT_POST, 'referencia',FILTER_SANITIZE_STRING);
         $dominio = filter_input(INPUT_POST, 'dominio',FILTER_SANITIZE_STRING);
-        $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT);
-        $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT);
+        $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         $servidorDAO = new servidorDAO($this->getConexion());
         $clienteDAO = new clienteDAO($this->getConexion());
@@ -49,11 +49,11 @@ class cliente_productoCOORDINATOR extends conexion{
         $ip_docker = filter_input(INPUT_POST, 'ip_docker',FILTER_SANITIZE_STRING);
         $estado = filter_input(INPUT_POST, 'estado',FILTER_SANITIZE_STRING);
         $maxcall = filter_input(INPUT_POST, 'maxcall',FILTER_SANITIZE_STRING);
-        $precio_venta = filter_input(INPUT_POST, 'precio_venta',FILTER_SANITIZE_NUMBER_FLOAT);
+        $precio_venta = filter_input(INPUT_POST, 'precio_venta',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $referencia = filter_input(INPUT_POST, 'referencia',FILTER_SANITIZE_STRING);
         $dominio = filter_input(INPUT_POST, 'dominio',FILTER_SANITIZE_STRING);
-        $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT);
-        $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT);
+        $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
 

@@ -28,7 +28,7 @@ function enviarEmail(int $id_cliente, string $adjunto ='', $tipo_email_enviar,  
     $mail->Host ='smtp.gmail.com';//host de gmail o servidor de correos
     $mail->Port ='465'; //puerto a usar 465 o 587
     $mail->Username = 'contabilidad@fcovoip.com'; //correo desde el cual se van a enviar los mail
-    $mail->Password = 'Vivalavida2017';//contraseña del correo
+    $mail->Password = 'CalidadYEfectividad2022';//contraseña del correo
     //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // puede ser PHPMailer::ENCRYPTION_SMTPS;
 
     //parametros de envio

@@ -69,7 +69,7 @@ $plan = $servidor_detalleDAO->getAllPage();
             </div> 
 
             <div class="col-md-3 mb-3">
-                <label for="id_txt_periodicidad_pago" class="form-label">Preriodicidad de pago</label>
+                <label for="id_txt_periodicidad_pago" class="form-label">Forma de pago</label>
                 <select class="form-select" aria-label="Default select example" name="periodicidad_pago" id="id_txt_periodicidad_pago" required="yes">
                     <option value="mensual" <?php echo $servidorDTO->getPeriodicidad_pago()=="mesual"?"selected":"";?>>Mensual</option>
                     <option value="anual" <?php echo $servidorDTO->getPeriodicidad_pago()=="anual"?"selected":"";?>>Anual</option>

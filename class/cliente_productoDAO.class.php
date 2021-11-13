@@ -76,7 +76,7 @@ class cliente_productoDAO extends conexion{
         }
     }
 
-    //funcion de uso exclusivo para generar_cuenta 
+    //funcion de uso exclusivo para generar_cuenta_cobro
     function getAllByCheck(int $x_minuto=0): mysqli_result{
         
         if($x_minuto == 0){

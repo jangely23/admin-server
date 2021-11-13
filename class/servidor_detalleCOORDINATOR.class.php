@@ -12,7 +12,7 @@ class servidor_detalleCOORDINATOR extends conexion{
         $procesador = filter_input(INPUT_POST,'procesador',FILTER_SANITIZE_STRING);
         $datacenter = filter_input(INPUT_POST,'datacenter',FILTER_SANITIZE_STRING);
         $raid = filter_input(INPUT_POST,'raid',FILTER_SANITIZE_STRING);
-        $costo = filter_input(INPUT_POST,'costo',FILTER_SANITIZE_NUMBER_INT);
+        $costo = filter_input(INPUT_POST,'costo',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $moneda = filter_input(INPUT_POST,'moneda',FILTER_SANITIZE_STRING);
         
         $servidor_detalleDTO = new servidor_detalleDTO(0,$plan_servidor, $ram, $disco, $procesador, $datacenter, $raid, $costo, $moneda);
@@ -30,7 +30,7 @@ class servidor_detalleCOORDINATOR extends conexion{
         $procesador = filter_input(INPUT_POST,'procesador',FILTER_SANITIZE_STRING);
         $datacenter = filter_input(INPUT_POST,'datacenter',FILTER_SANITIZE_STRING);
         $raid = filter_input(INPUT_POST,'raid',FILTER_SANITIZE_STRING);
-        $costo = filter_input(INPUT_POST,'costo',FILTER_SANITIZE_NUMBER_INT);
+        $costo = filter_input(INPUT_POST,'costo',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $moneda = filter_input(INPUT_POST,'moneda',FILTER_SANITIZE_STRING);
 
         $servidor_detalleDTO = new servidor_detalleDTO($id_servidor_detalle,$plan_servidor, $ram, $disco, $procesador, $datacenter, $raid, $costo, $moneda);

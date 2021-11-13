@@ -153,8 +153,8 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                 </div>
 
                 <div class="col-md-2 mb-3 list-group">
-                    <label for="id_txt_descuento" class="form-label">Descuento</label>
-                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50.000" value="<?php echo $cliente_productoDTO->getDescuento(); ?>" required>
+                    <label for="id_txt_descuento" class="form-label">% Descuento</label>
+                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50" value="<?php echo $cliente_productoDTO->getDescuento(); ?>" required>
                 </div>
 
                 <div class="col-md-3 mb-3 list-group">
