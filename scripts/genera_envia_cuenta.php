@@ -25,24 +25,24 @@ $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
 $tipo_email_enviar = "cuenta_cobro";  //permitira a futuro validar si el mail a enviar es de cobro, suspension o cancelacion.
 
 $x_minuto = 0; //0 no es server x minuto, 1 si es server por minuto
-$fecha_actual = date('d-m-Y');
+$fecha_actual = date('Y-m-d');
 
 //Establece fechas de facturacion para cuenta de cobro y obtiene los cliente_producto a cobrar
 date_default_timezone_set('America/Bogota');
 
-$inicio_corte = date("d-m-Y",strtotime($fecha_actual."+9 days"));
-$fin_corte = date("d-m-Y",strtotime($inicio_corte."+1 months, -1 days"));
+$inicio_corte = date("Y-m-d",strtotime($fecha_actual."+9 days"));
+$fin_corte = date("Y-m-d",strtotime($inicio_corte."+1 months, -1 days"));
 
-if(date('d',strtotime($fecha_actual))==16){  //validacion fechas de fcovoip y simple
-    $fecha_pago = date("d-m-Y",strtotime($fecha_actual."+9 days"));
-    $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days"));
+if(date('d',strtotime($fecha_actual))==13){  //validacion fechas de fcovoip y simple
+    $fecha_pago = date("Y-m-d",strtotime($fecha_actual."+9 days"));
+    $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days"));
 
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
 
-}else if(date('d',strtotime($fecha_actual))==12){ 
-    $inicio_corte = date("d-m-Y",strtotime($fecha_actual."-1 days")); 
-    $fecha_pago = date("t-m-Y", strtotime($fecha_actual));
-    $fecha_suspension = date("d-m-Y",strtotime($fecha_pago."+1 days")); 
+}else if(date('d',strtotime($fecha_actual))==16){ 
+    $inicio_corte = date("Y-m-d",strtotime($fecha_actual."-1 days")); 
+    $fecha_pago = date("Y-m-t", strtotime($fecha_actual));
+    $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days")); 
     
     $x_minuto = 1;
 
@@ -74,10 +74,11 @@ while($obj = $cliente_productos->fetch_object()){
     if(file_exists("../public/pdf/$nombre_cuenta")){
 
         //inserta registro del cobro en la DB
-        $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $date_format($inicio_corte, 'Y-m-d H:i:s'), $date_format($inicio_pago, 'Y-m-d H:i:s'), $date_format($inicio_suspension, 'Y-m-d H:i:s'), 'generada', "saldo anterior ".$cliente_productoDTO->getSaldo()." y descuento de ".$cliente_productoDTO->getDescuento()."%", $valor_pagar);
+        $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "saldo anterior ".$cliente_productoDTO->getSaldo()." y descuento de ".$cliente_productoDTO->getDescuento()."%", $valor_pagar);
         $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
         $result = $cliente_producto_cobroDAO->insert($cliente_producto_cobroDTO);
 
+       
         //envia el email
         enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
         sleep(3);

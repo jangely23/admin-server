@@ -78,8 +78,7 @@ class cliente_producto_cobroDAO extends conexion{
 
     function insert(cliente_producto_cobroDTO $cliente_producto_cobroDTO){
         $query = sprintf("INSERT INTO cliente_producto_cobro (id_cliente_producto, cuenta_cobro, numero_cuenta, fecha_corte, fecha_pago, fecha_suspension, estado, observacion, valor) values (%d, '%s', %d, '%s', '%s', '%s', '%s','%s', %f)", $cliente_producto_cobroDTO->getId_cliente_producto(), $cliente_producto_cobroDTO->getCuenta_cobro(), $cliente_producto_cobroDTO->getNumero_cuenta(),$cliente_producto_cobroDTO->getFecha_corte(),$cliente_producto_cobroDTO->getFecha_pago(), $cliente_producto_cobroDTO->getFecha_suspension(), $cliente_producto_cobroDTO->getEstado(), $cliente_producto_cobroDTO->getObservacion(), $cliente_producto_cobroDTO->getValor());
-        var_dump($query);
-        throw new Exception($query);
+
         $result = $this->getConexion()->query($query);
 
         if($result){

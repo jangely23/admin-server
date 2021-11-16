@@ -30,6 +30,7 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
             <th scope="row">#</th>
             <th scope="row">Cuenta</th>
             <th scope="row" class="columna_no_indispensable">Valor</th>
+            <th scope="row" class="columna_no_indispensable">Fecha Pago</th>
             <th scope="row" class="columna_no_indispensable">Estado</th>
             <th scope="row" colspan="2">Acciones</th>
         </tr>
@@ -43,6 +44,7 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
             <td><?php echo $cliente_producto_cobroDTO->getNumero_cuenta(); ?></td>
             <td><?php echo $cliente_producto_cobroDTO->getCuenta_cobro(); ?></td>
             <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getValor(); ?></td>
+            <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getFecha_pago(); ?></td>
             <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getEstado(); ?></td>
             
             <?php if($cliente_producto_cobroDTO->getEstado() == "generada"){ ?>
