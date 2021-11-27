@@ -55,7 +55,5 @@ class servidorCOORDINATOR extends conexion{
         }
     }
 
-
-
 }
 ?>

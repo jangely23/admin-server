@@ -4,7 +4,15 @@
  Email: Jessica.leonel.p@gmail.com   
 */
 
+/* session_name("admin");
+session_start();
+
+if (!$_SESSION['en_session']) {
+    header("Location: login.php");
+} */
+
 $pagina_principal = 'lists/cliente_producto.php';
+
 ?>
 
 <!doctype html>
