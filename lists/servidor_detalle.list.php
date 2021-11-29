@@ -1,4 +1,5 @@
 <?php
+require '../scripts/validarSession.php'; 
 require "../config/conexion.php";
 require "../class/conexion.class.php"; 
 require "../class/servidor_detalleDAO.class.php"; 

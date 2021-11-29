@@ -1,10 +1,12 @@
 <?php
+require '../scripts/validarSession.php';
 require "../config/conexion.php";
 require "../class/conexion.class.php";
 require "../class/cliente_producto_moduloDAO.class.php";
 require "../class/cliente_producto_moduloDTO.class.php";
 require "../class/moduloDAO.class.php";
 require "../class/moduloDTO.class.php";
+
 
 $id_cliente_producto_modulo = filter_input(INPUT_POST,'id_cliente_producto_modulo',FILTER_SANITIZE_NUMBER_INT)??0;
 $id_cliente_producto = filter_input(INPUT_POST,'id_cliente_producto',FILTER_SANITIZE_NUMBER_INT)??0;

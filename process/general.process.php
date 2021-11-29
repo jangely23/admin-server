@@ -29,7 +29,7 @@ try{
 
     $nombreCoordinador = $entidad."COORDINATOR";
     $coordinador = new $nombreCoordinador($conexion);
-    
+
     switch ($modo){
         case "crear":
             $resultado = $coordinador->createByPost();

@@ -80,10 +80,14 @@ function sumarServicios() {
 }
 
 function confirmarClave() {
-    const confirmacion = document.getElementById("txt_claveConfirmacion").value;
-    const clave = document.getElementById("txt_clave").value;
+
+    const confirmacion = document.getElementById("claveConfirmacion").value;
+    const clave = document.getElementById("clave").value;
     const alerta = document.getElementById("alerta");
     const boton = document.getElementById("boton");
+
+    alerta.classList.add("text-danger");
+    alerta.classList.remove("text-success");
 
     if (clave == confirmacion) {
         alerta.classList.remove("text-danger");

@@ -1,4 +1,5 @@
 <?php
+
 $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda', FILTER_SANITIZE_STRING);
 ?>
 

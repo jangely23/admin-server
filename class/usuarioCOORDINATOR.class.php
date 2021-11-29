@@ -1,5 +1,5 @@
 <?php
-class servidorCOORDINATOR extends conexion{
+class usuarioCOORDINATOR extends conexion{
     function __construct($conexion){
         parent::__construct($conexion);
     }
@@ -22,13 +22,26 @@ class servidorCOORDINATOR extends conexion{
         $nombre = filter_input(INPUT_POST, 'nombre',FILTER_SANITIZE_STRING);
         $email = filter_input(INPUT_POST, 'email',FILTER_SANITIZE_STRING);
         $usuario = filter_input(INPUT_POST, 'usuario',FILTER_SANITIZE_STRING);
-        $clave = md5(filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING));
+        $clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
         $estado = filter_input(INPUT_POST, "estado", FILTER_SANITIZE_STRING);
-        
+
+        $usuarioDTO = new usuarioDTO();
         $usuarioDAO = new usuarioDAO($this->getConexion());
-        $usuarioDTO = new usuarioDTO($id_usuario, $nombre, $email, $usuario, $clave, $estado);
         
-        return $usuarioDAO->update($usuarioDTO);  
+        $usuarioDTO->loadById($id_usuario, $this->getConexion());
+        
+        if($clave == $usuarioDTO->getClave()){
+            
+            $usuarioDTO = new usuarioDTO($id_usuario, $nombre, $email, $usuario, $clave, $estado);   
+            return $usuarioDAO->update($usuarioDTO); 
+        }else{
+
+            $usuarioDTO = new usuarioDTO($id_usuario, $nombre, $email, $usuario, md5($clave), $estado);
+            return $usuarioDAO->update($usuarioDTO);  
+
+        }
+
+
     }
 
     function deleteByPost(){

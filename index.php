@@ -4,12 +4,12 @@
  Email: Jessica.leonel.p@gmail.com   
 */
 
-/* session_name("admin");
+session_name("admin");
 session_start();
 
 if (!$_SESSION['en_session']) {
     header("Location: login.php");
-} */
+} 
 
 $pagina_principal = 'lists/cliente_producto.php';
 
@@ -53,7 +53,7 @@ $pagina_principal = 'lists/cliente_producto.php';
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a class="nav-link active text-secondary material-icons me-1" aria-current="page" href="#">
+                        <a class="nav-link active text-secondary material-icons me-1" aria-current="page" href="process/logout.process.php">
                             <i class="fas fa-power-off"></i> Cerrar sesión
                         </a>
                     </div>

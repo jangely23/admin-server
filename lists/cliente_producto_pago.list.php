@@ -1,5 +1,5 @@
 <?php
-
+require '../scripts/validarSession.php'; 
 require "../config/conexion.php";
 require "../class/conexion.class.php";
 require "../class/cliente_producto_pagoDAO.class.php";

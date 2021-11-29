@@ -1,4 +1,7 @@
-<?php $txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING) ?>
+<?php 
+
+$txt_busqueda = filter_input(INPUT_POST,'txt_busqueda',FILTER_SANITIZE_STRING)
+?>
 <fieldset class=" shadow p-3 mb-3  rounded bg-ligth">
     <legend class="col-10">  
         Plan del servidor

@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 $id_cliente_producto = filter_input(INPUT_POST,'id_cliente_producto',FILTER_SANITIZE_NUMBER_INT)??0;
 ?>
 <fieldset class=" shadow p-3 mb-3  rounded bg-ligth">
