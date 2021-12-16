@@ -49,7 +49,7 @@ class servidor_detalleDAO extends conexion{
 
     function getAll(){
 
-        $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 ORDER BY costo, plan_servidor asc ");
+        $query = "SELECT * FROM servidor_detalle";
         $result = $this->getConexion()->query($query);
         
         if($result){
