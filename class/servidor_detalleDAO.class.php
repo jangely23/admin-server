@@ -47,19 +47,15 @@ class servidor_detalleDAO extends conexion{
     }
 
 
-    function getAll(string $txt_busqueda=''){
+    function getAll(){
 
-        if($txt_busqueda != ''){
-            $sqlBusqueda = sprintf('AND (plan_servidor LIKE "%%%1$s%%" or ram LIKE "%%%1$s%%" or disco LIKE "%%%1$s%%" or procesador LIKE "%%%1$s%%" or datacentar LIKE "%%%1$s%%" or raid LIKE "%%%1$s%%" or costo LIKE "%%%1$f%%" or moneda LIKE "%%%1$s%%")',$txt_busqueda);
-        }
-
-        $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 %s ORDER BY costo, plan_servidor asc ",$sqlBusqueda);
+        $query = sprintf("SELECT * FROM servidor_detalle WHERE 1=1 ORDER BY costo, plan_servidor asc ");
         $result = $this->getConexion()->query($query);
         
         if($result){
             return $result;
         }else{
-            throw new Exception("Error al intentar getAllPage() en servidor_detalleDAO");
+            throw new Exception("Error al intentar getAll en servidor_detalleDAO");
         }
     }
 
