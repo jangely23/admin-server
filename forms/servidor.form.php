@@ -14,7 +14,7 @@ $servidorDTO->loadById($id_servidor, $conexion);
 
 $servidor_detalleDTO = new servidor_detalleDTO();
 $servidor_detalleDAO = new servidor_detalleDAO($conexion);
-$plan = $servidor_detalleDAO->getAllPage();
+$plan = $servidor_detalleDAO->getAll();
 ?>
 <div class="row">
     <fieldset class="bg-white shadow p-3 mb-3 bg-body rounded">
