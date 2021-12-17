@@ -45,7 +45,7 @@ $plan = $servidor_detalleDAO->getAll();
                 <select class="form-select" aria-label="Default select example" name="tipo" id="id_txt_tipo" required="yes">
                     <option value="vz" <?php echo $servidorDTO->getTipo()=="vz"?"selected":"";?>>VZ</option>
                     <option value="vps" <?php echo $servidorDTO->getTipo()=="vps"?"selected":"";?>>VPS</option>
-                    <option value="dedidado" <?php echo $servidorDTO->getTipo()=="dedicado"?"selected":"";?>>Dedidado</option>
+                    <option value="dedicado" <?php echo $servidorDTO->getTipo()=="dedicado"?"selected":"";?>>Dedidado</option>
                 </select>
             </div>
 
