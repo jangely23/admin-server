@@ -25,9 +25,10 @@ class usuarioDAO extends conexion{
     }
 
     function getByEmailAndClave(string $email, string $clave) {
-        $query = sprintf("select * from usuario where email='%s' or usuario='%s' and clave='%s' ", $email, $email,$clave);
+        $query = sprintf("select * from usuario where (email='%s' or usuario='%s') and clave='%s' ", $email, $email,$clave);
         
         $result = $this->getConexion()->query($query);
+
         if ($result) {
             if ($result->num_rows) {
                 return $result->fetch_object();

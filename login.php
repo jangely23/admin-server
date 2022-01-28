@@ -2,7 +2,7 @@
 session_name("admin");
 session_start();
 
-if ($_SESSION['en_session']) {
+if($_SESSION['en_session']) {
     header("Location: index.php");
 }
 ?>
@@ -14,6 +14,7 @@ if ($_SESSION['en_session']) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/a8b4643699.js" crossorigin="anonymous"></script>
         <link href="./varios/css/login.css" rel="stylesheet" type="text/css"></link>
+        <link href="public/css/design.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="wrapper fadeInDown">
@@ -48,7 +49,7 @@ if ($_SESSION['en_session']) {
                     <!-- Login Form -->
                     <form class="me-2 p-2" action="process/login.process.php" method="post">
                         <div class="mt-2 p-2">
-                            <input type="text" id="login" class="form-control" name="email" placeholder="email">
+                            <input type="text" id="login" class="form-control" name="email" placeholder="email or user">
                         </div>
                         <div class="mt-2 mb-2 p-2">
                             <input type="password" id="password" class="form-control" name="clave" placeholder="password">
