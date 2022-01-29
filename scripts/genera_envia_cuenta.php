@@ -71,7 +71,7 @@ while($obj = $cliente_productos->fetch_object()){
 
     $nombre_cuenta = crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar);
     
-    if(file_exists("../public/pdf/$nombre_cuenta")){
+    if(file_exists("../public/pdf/cuenta_cobro/$nombre_cuenta")){
 
         //inserta registro del cobro en la DB
         $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "saldo anterior ".$cliente_productoDTO->getSaldo()." y descuento de ".$cliente_productoDTO->getDescuento()."%", $valor_pagar);

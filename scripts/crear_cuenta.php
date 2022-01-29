@@ -124,7 +124,7 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');
 $dompdf->render();
 $output = $dompdf->output();
-file_put_contents("../public/pdf/".$nombre_cliente."_".$numero_cuenta.".pdf", $output);
+file_put_contents("../public/pdf/cuenta_cobro/".$nombre_cliente."_".$numero_cuenta.".pdf", $output);
 //$dompdf->stream('report_'.date("dmYHis"));
 return $nombre_cliente."_".$numero_cuenta.".pdf";
 }

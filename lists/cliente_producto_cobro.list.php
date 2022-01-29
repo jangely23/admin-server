@@ -66,7 +66,6 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
             </td>       
         </tr>
         <?php } ?>
-
     </tbody>
 </table>
 
