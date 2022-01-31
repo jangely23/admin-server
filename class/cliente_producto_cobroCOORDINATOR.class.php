@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 use Fpdf\Fpdf;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfReader;
@@ -22,17 +22,16 @@ class cliente_producto_cobroCOORDINATOR extends conexion{
 
         if($result){
             $pdf = new Fpdi();
-            $pdf->AddPage('P', 'Letter');
-		    $pdf->setSourceFile(__DIR__ . "/../public/pdf/template/template_cancel.pdf");
+            $pdf->AddPage();
+		    $pdf->setSourceFile(__DIR__ ."/../public/pdf/cuenta_cobro/$cuenta_cobro");
+            var_dump(__DIR__ );
+            var_dump(__FILE__ );
 		    $template = $pdf->importPage(1);
+            $pdf->Image(__DIR__ ."/../public/images/cancelCuentaCobro.png", 0, 0, 210, 297,'png');
             $pdf->useTemplate($template);
-            $pdf->setSourceFile(__DIR__ . "/../public/pdf/cuentas_cobro/".$cuenta_cobro);
-            $template = $pdf->importPage(1);
-            $pdf->useTemplate($template);
-            $pdf->Output(__DIR__ . "/../public/pdf/cuentas_cobro/".$cuenta_cobro); 
-
+            $pdf->Output(__DIR__ ."/../public/pdf/cuenta_cobro/$cuenta_cobro", "F");
             //unlink("../public/pdf/$cuenta_cobro"); //Elimina el archivo
-        }
+        } 
 
         return $result;
     }

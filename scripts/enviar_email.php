@@ -45,7 +45,7 @@ function enviarEmail(int $id_cliente, string $adjunto ='', $tipo_email_enviar,  
     }
 
    
-    $mail->addAttachment('../public/pdf/'.$adjunto, $clienteDTO->getNombre().'.pdf');
+    $mail->addAttachment('../public/pdf/cuenta_cobro'.$adjunto, $clienteDTO->getNombre().'.pdf');
     $mail->CharSet = 'UTF-8';
     $mail->Subject = "Cuenta cobro servidor IP  $ip_servidor";//asunto del correo
     $mail->Body = '<p>Muy buen dia</p><p>Sr(a) '.$clienteDTO->getNombre().'</p><p>Mediante el presente correo se anexa la cuenta cobro del  servicio que usted adquirio con nuestra empresa, el no pago genera el riesgo de suspensión del servicio.</p><p>

@@ -48,7 +48,9 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
             <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getEstado(); ?></td>
             
             <?php if($cliente_producto_cobroDTO->getEstado() == "generada"){ ?>
-                <td><a class="text-success" href="../public/pdf/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
+                <td><a class="text-success" href="../public/pdf/cuenta_cobro/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
+            <?php }else{ ?>
+                <td><a class="text-secondary" href="../public/pdf/cuenta_cobro/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
             <?php } ?>
             <td>
                 <form action="./process/cliente_producto_cobro.process.php" id="formEliminar<?php echo $cliente_producto_cobroDTO->getId_cliente_producto_cobro();?>">

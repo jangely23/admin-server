@@ -7,9 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInite2fbb74e39a90db19763f36ea68e2210
 {
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'setasign\\Fpdi\\' => 14,
+        ),
         'S' => 
         array (
             'Svg\\' => 4,
+            'Sabberworm\\CSS\\' => 15,
         ),
         'P' => 
         array (
@@ -26,9 +31,17 @@ class ComposerStaticInite2fbb74e39a90db19763f36ea68e2210
     );
 
     public static $prefixDirsPsr4 = array (
+        'setasign\\Fpdi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
         'Svg\\' => 
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+        ),
+        'Sabberworm\\CSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
@@ -44,19 +57,10 @@ class ComposerStaticInite2fbb74e39a90db19763f36ea68e2210
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'Sabberworm\\CSS' => 
-            array (
-                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
-            ),
-        ),
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
         'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
         'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
         'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
@@ -69,7 +73,6 @@ class ComposerStaticInite2fbb74e39a90db19763f36ea68e2210
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite2fbb74e39a90db19763f36ea68e2210::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite2fbb74e39a90db19763f36ea68e2210::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInite2fbb74e39a90db19763f36ea68e2210::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite2fbb74e39a90db19763f36ea68e2210::$classMap;
 
         }, null, ClassLoader::class);

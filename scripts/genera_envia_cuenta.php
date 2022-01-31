@@ -33,13 +33,13 @@ date_default_timezone_set('America/Bogota');
 $inicio_corte = date("Y-m-d",strtotime($fecha_actual."+9 days"));
 $fin_corte = date("Y-m-d",strtotime($inicio_corte."+1 months, -1 days"));
 
-if(date('d',strtotime($fecha_actual))==13){  //validacion fechas de fcovoip y simple
+if(date('d',strtotime($fecha_actual))==16){  //validacion fechas de fcovoip y simple
     $fecha_pago = date("Y-m-d",strtotime($fecha_actual."+9 days"));
     $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days"));
 
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
-
-}else if(date('d',strtotime($fecha_actual))==16){ 
+    
+}else if(date('d',strtotime($fecha_actual))==26){ 
     $inicio_corte = date("Y-m-d",strtotime($fecha_actual."-1 days")); 
     $fecha_pago = date("Y-m-t", strtotime($fecha_actual));
     $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days")); 
@@ -74,7 +74,7 @@ while($obj = $cliente_productos->fetch_object()){
     if(file_exists("../public/pdf/cuenta_cobro/$nombre_cuenta")){
 
         //inserta registro del cobro en la DB
-        $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "saldo anterior ".$cliente_productoDTO->getSaldo()." y descuento de ".$cliente_productoDTO->getDescuento()."%", $valor_pagar);
+        $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "valor server ".$cliente_productoDTO->getPrecio_venta()." con descuento de ".$cliente_productoDTO->getDescuento()."%" . ", saldo pendiente de pago mes anterior ".$cliente_productoDTO->getSaldo(), $valor_pagar);
         $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
         $result = $cliente_producto_cobroDAO->insert($cliente_producto_cobroDTO);
 
