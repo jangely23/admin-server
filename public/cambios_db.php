@@ -4,5 +4,6 @@
 ALTER TABLE servidor_detalle MODIFY ram varchar(100) NOT NULL;
 ALTER TABLE servidor_detalle MODIFY disco varchar(100) NOT NULL;
 
-
+// 01 febrero 2022
+ALTER TABLE cliente_producto_cobro ADD valor_pendiente float;
 ?>

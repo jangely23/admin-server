@@ -17,10 +17,10 @@ $muestra = 10;
 $pagina = filter_input(INPUT_POST,'pagina',FILTER_SANITIZE_NUMBER_INT)??1;
 
 $registro_inicio = ($pagina-1) * $muestra;
-$cantidad_registros = $cliente_producto_cobroDAO->getCount($txt_busqueda, $id_cliente_producto);
+$cantidad_registros = $cliente_producto_pagoDAO->getCount($txt_busqueda, $id_cliente_producto);
 $paginas = ceil($cantidad_registros/$muestra);
 
-$datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente_producto, $registro_inicio, $muestra);
+$datos_pago = $cliente_producto_pagoDAO->getAllPage($txt_busqueda, $id_cliente_producto, $registro_inicio, $muestra);
 //fin paginacion
 ?>
 
@@ -28,40 +28,44 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
 <table class="table table-striped ">
     <thead class="text_center">
         <tr>
-            <th scope="row">Nombre</th>
-            <th scope="row">Proveedor</th>
-            <th scope="row" colspan="2">Acciones</th>
+            <th scope="row">Fecha pago</th>
+            <th scope="row">Medio pago</th>
+            <th scope="row">Valor</th>
+            <th scope="row">Soporte</th>
+            <th scope="row">Validacion</th>
         </tr>
     </thead>
     <tbody>
         <?php
-            while ($obj = $modulos->fetch_object()){
-                $moduloDTO->map($obj);
+            while ($obj = $datos_pago->fetch_object()){
+                $cliente_producto_pagoDTO->map($obj);
         ?>
         <tr>
-            <td><?php echo $moduloDTO->getNombre(); ?></td>
-            <td><?php echo $moduloDTO->getProveedor(); ?></td>
-           
-            <td>
-                <a class="text-warning" href="#" onclick="abrirPagina('forms/modulo.form.php','contenido','&id_modulo=<?php echo $moduloDTO->getId_modulo();?>')"> <i class="fas fa-edit"></i> </a>
-            </td>
-            
-            <td>
-                <form action="./process/modulo.process.php" id="formEliminar<?php echo $moduloDTO->getId_modulo();?>">
-
-                    <input type="hidden" name="id_modulo" value="<?php echo $moduloDTO->getId_modulo();?>"/>
-
-                    <input type="hidden" name="modo" id="modo" value="eliminar"/>
-                    
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $moduloDTO->getId_modulo();?>'),'',`abrirPagina('lists/modulo.php', 'contenido', '');`)">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </form>
-            </td>
-        
+            <td><?php echo $cliente_producto_pagoDTO->getFecha_pago(); ?></td>
+            <td><?php echo $cliente_producto_pagoDTO->getMedio_pago(); ?></td>
+            <td><?php echo $cliente_producto_pagoDTO->getValor(); ?></td>
+            <td><?php echo $cliente_producto_pagoDTO->getSoporte(); ?></td>
+            <td><?php echo $cliente_producto_pagoDTO->getValidacion(); ?></td>
+                 
         </tr>
         <?php } ?>
 
     </tbody>
 </table>
 
+<!-- Paginacion -->
+<div class="row ">
+    <div class="col text-secondary mt-3">
+        <center><?php echo "Página ".$pagina." de ".$paginas;?> </center>
+    </div>
+</div>
+<div class="row ">
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <ul class="pagination">
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=1')"><i class="fas fa-fast-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==1?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina-1);?>')"><i class="fas fa-step-backward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo ($pagina+1);?>')"><i class="fas fa-step-forward"></i></a></li>
+        <li class="page-item <?php echo $pagina==$paginas?'disabled':''; ?>"><a class="page-link" href="#" onclick="abrirPagina('lists/cliente_producto_pago.php','contenido','&txt_busqueda='+$('#id_txt_busqueda').val()+'&pagina=<?php echo $paginas;?>')"><i class="fas fa-fast-forward"></i></a></li>
+        </ul>
+    </nav> 
+</div>

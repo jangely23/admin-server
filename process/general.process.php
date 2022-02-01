@@ -21,6 +21,12 @@ switch ($entidad){
         require "../class/moduloDTO.class.php";
         require "../class/moduloDAO.class.php";
         break;
+    case "cliente_producto_cobro":
+        require "../class/cliente_productoDTO.class.php";
+        require "../class/cliente_productoDAO.class.php";
+        require "../class/cliente_producto_pagoDTO.class.php";
+        require "../class/cliente_producto_pagoDAO.class.php";
+        break;
 }
 
 

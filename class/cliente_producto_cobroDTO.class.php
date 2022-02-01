@@ -59,7 +59,7 @@ class cliente_producto_cobroDTO {
 
     public function getFecha_suspension(): string { return $this->fecha_suspension; }
     public function setFecha_suspension(string $fecha_suspension): void { $this->fecha_suspension = $fecha_suspension; }
-    
+  
     function map($obj){
         $this->setId_cliente_producto_cobro($obj->id_cliente_producto_cobro);
         $this->setId_cliente_producto($obj->id_cliente_producto);
@@ -85,4 +85,6 @@ class cliente_producto_cobroDTO {
         }
     }
 
+
+  
 }

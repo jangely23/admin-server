@@ -23,6 +23,7 @@ $paginas = ceil($cantidad_registros/$muestra);
 $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente_producto, $registro_inicio, $muestra);
 //fin paginacion
 ?>
+<script src="../public/js/deshabilitar.js"></script>
 
 <table class="table table-striped ">
     <thead class="text_center">
@@ -41,17 +42,13 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
                 $cliente_producto_cobroDTO->map($obj);
         ?>
         <tr>
-            <td><?php echo $cliente_producto_cobroDTO->getNumero_cuenta(); ?></td>
-            <td><?php echo $cliente_producto_cobroDTO->getCuenta_cobro(); ?></td>
-            <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getValor(); ?></td>
-            <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getFecha_pago(); ?></td>
-            <td class="columna_no_indispensable"><?php echo $cliente_producto_cobroDTO->getEstado(); ?></td>
-            
-            <?php if($cliente_producto_cobroDTO->getEstado() == "generada"){ ?>
-                <td><a class="text-success" href="../public/pdf/cuenta_cobro/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
-            <?php }else{ ?>
-                <td><a class="text-secondary" href="../public/pdf/cuenta_cobro/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
-            <?php } ?>
+            <td class="botonDeshabilitar"><?php echo $cliente_producto_cobroDTO->getNumero_cuenta(); ?></td>
+            <td class="botonDeshabilitar"><?php echo $cliente_producto_cobroDTO->getCuenta_cobro(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo $cliente_producto_cobroDTO->getValor(); ?></td>
+            <td class="columna_no_indispensable botonDeshabilitar"><?php echo substr($cliente_producto_cobroDTO->getFecha_pago(),0,10); ?></td>
+            <td class="columna_no_indispensable estadoClienteProducto botonDeshabilitar"><?php echo $cliente_producto_cobroDTO->getEstado(); ?></td>
+            <td><a class="text-success botonDeshabilitar" href="../public/pdf/cuenta_cobro/<?php echo $cliente_producto_cobroDTO->getCuenta_cobro();?>" target="_blank"><i class="fas fa-download"></i></a></td>
+
             <td>
                 <form action="./process/cliente_producto_cobro.process.php" id="formEliminar<?php echo $cliente_producto_cobroDTO->getId_cliente_producto_cobro();?>">
 
@@ -61,7 +58,7 @@ $datos_cobro = $cliente_producto_cobroDAO->getAllPage($txt_busqueda, $id_cliente
 
                     <input type="hidden" name="modo" id="modo" value="eliminar"/>
 
-                    <a class="text-danger" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $cliente_producto_cobroDTO->getId_cliente_producto_cobro();?>'),'',`abrirPagina('lists/cliente_producto_cobro.php', 'contenido', '&id_cliente_producto=<?php echo $id_cliente_producto;?>');`)">
+                    <a class="text-danger botonDeshabilitar" onclick="enviarFormulario(document.getElementById('formEliminar<?php echo $cliente_producto_cobroDTO->getId_cliente_producto_cobro();?>'),'',`abrirPagina('lists/cliente_producto_cobro.php', 'contenido', '&id_cliente_producto=<?php echo $id_cliente_producto;?>');`)">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </form>

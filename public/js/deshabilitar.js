@@ -7,7 +7,7 @@ function deshabilitarCampos() {
         const padre = $(elem).parents("tr");
         const deshabilitar = padre.find(".botonDeshabilitar");
         let estado_texto = $(elem).text();
-        if (estado_texto === "cancelado" || estado_texto === "entregado") {
+        if (estado_texto === "cancelado" || estado_texto === "entregado" || estado_texto === "cancelada") {
             deshabilitar.removeAttr("onclick").removeClass('text-primary text-warning text-danger text-info text-success').addClass('text-secondary disable fw-light');
 
         } else if (estado_texto === "inactivo") {
