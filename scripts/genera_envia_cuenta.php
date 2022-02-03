@@ -25,13 +25,15 @@ $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
 $tipo_email_enviar = "cuenta_cobro";  //permitira a futuro validar si el mail a enviar es de cobro, suspension o cancelacion.
 
 $x_minuto = 0; //0 no es server x minuto, 1 si es server por minuto
-$fecha_actual = date('Y-m-d');
 
 //Establece fechas de facturacion para cuenta de cobro y obtiene los cliente_producto a cobrar
 date_default_timezone_set('America/Bogota');
 
+$fecha_actual = date('Y-m-d');
+
 $inicio_corte = date("Y-m-d",strtotime($fecha_actual."+9 days"));
 $fin_corte = date("Y-m-d",strtotime($inicio_corte."+1 months, -1 days"));
+$prueba=date('d',strtotime($fecha_actual));
 
 if(date('d',strtotime($fecha_actual))==16){  //validacion fechas de fcovoip y simple
     $fecha_pago = date("Y-m-d",strtotime($fecha_actual."+9 days"));
@@ -39,13 +41,12 @@ if(date('d',strtotime($fecha_actual))==16){  //validacion fechas de fcovoip y si
 
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
     
-}else if(date('d',strtotime($fecha_actual))==01){ 
+}else if(date('d',strtotime($fecha_actual))==03){ 
     $inicio_corte = date("Y-m-d",strtotime($fecha_actual."-1 days")); 
     $fecha_pago = date("Y-m-t", strtotime($fecha_actual));
     $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days")); 
     
     $x_minuto = 1;
-
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto); //consulta los sever-cliente a cobrar que estan activos y son x min
 }
 
@@ -83,7 +84,7 @@ while($obj = $cliente_productos->fetch_object()){
         $result = $cliente_productoDAO->update($cliente_productoDTO_nuevo);
        
         //envia el email
-        enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
+        //enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
         sleep(3);
         
     }else{
