@@ -95,3 +95,34 @@ function confirmarClave() {
         boton.classList.remove("disabled");
     }
 }
+
+/* //No se esta usando actualmente
+
+function agregar_input() {
+    var contenido = document.getElementById("medio_pago").value;
+    var input_hijo = !!document.getElementById("id_soporte_agregado");
+    var padre_input = document.getElementById("id_soporte_pago");
+
+    if (input_hijo) {
+        padre_input.removeChild(document.getElementById("id_soporte_agregado"));
+    }
+
+    if (contenido != "Bancolombia_Francisco") {
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.className = "form-control";
+        input.setAttribute("name", "soporte");
+        input.setAttribute("id", "id_soporte_agregado");
+        document.getElementById("id_soporte_pago").appendChild(input);
+
+    } else {
+
+        var input = document.createElement("input");
+        input.type = "file";
+        input.className = "form-control";
+        input.setAttribute("name", "soporte");
+        input.setAttribute("id", "id_soporte_agregado");
+        document.getElementById("id_soporte_pago").appendChild(input);
+    }
+} */

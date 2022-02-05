@@ -80,17 +80,15 @@ class cliente_productoDAO extends conexion{
     function getAllByCheck(int $x_minuto=0): mysqli_result{
         date_default_timezone_set('America/Bogota');
         
-       /*  $fecha_referencia = strtotime('first day of this month', time());
-        $fecha_validar = date('Y-m-d h:i:s', $fecha_referencia); */
-        $fecha_validar='2022-02-03 17:16:01';
-        throw new Exception($fecha_validar);
+        $fecha_referencia = strtotime('first day of this month', time());
+        $fecha_validar = date('Y-m-d h:i:s', $fecha_referencia);
 
         if($x_minuto == 0){
-            $query = sprintf("SELECT * FROM cliente_producto WHERE estado = 'activo' AND id_producto != 14 AND id_producto != 15  AND fecha_creacion < '%s' ORDER BY id_cliente, id_producto",$fecha_validar);
+            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto != 14 AND id_producto != 15  AND fecha_creacion < "%s"  ORDER BY id_cliente, id_producto',$fecha_validar);
         }else{
-            $query = sprintf("SELECT * FROM cliente_producto WHERE estado = 'activo' AND id_producto = 15 AND fecha_creacion < '%s' ORDER BY id_cliente, id_producto",$fecha_validar);
+            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto = 15 AND fecha_creacion < "%s" ORDER BY id_cliente, id_producto',$fecha_validar);
         }
-        throw new Exception($query);
+        
         $result = $this->getConexion()->query($query);
 
         if($result){

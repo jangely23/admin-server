@@ -27,6 +27,10 @@ switch ($entidad){
         require "../class/cliente_producto_pagoDTO.class.php";
         require "../class/cliente_producto_pagoDAO.class.php";
         break;
+    case "cliente_producto_pago":
+        require "../class/cliente_productoDTO.class.php";
+        require "../class/cliente_productoDAO.class.php";
+        break;
 }
 
 

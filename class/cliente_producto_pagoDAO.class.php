@@ -63,7 +63,7 @@ class cliente_producto_pagoDAO extends conexion{
 
 
     function insert(cliente_producto_pagoDTO $cliente_producto_pagoDTO){
-        $query = sprintf("INSERT INTO cliente_producto_pago (id_cliente_producto, medio_pago, valor, soporte, validacion) values (%d, '%s', %f, '%s', '%s')", $cliente_producto_pagoDTO->getId_cliente_producto(), $cliente_producto_pagoDTO->getMedio_pago(), $cliente_producto_pagoDTO->getValor(), $cliente_producto_pagoDTO->getSoporte(), $cliente_producto_pagoDTO->getValicacion());
+        $query = sprintf("INSERT INTO cliente_producto_pago (id_cliente_producto, medio_pago, valor, soporte, validacion) values (%d, '%s', %f, '%s', '%s')", $cliente_producto_pagoDTO->getId_cliente_producto(), $cliente_producto_pagoDTO->getMedio_pago(), $cliente_producto_pagoDTO->getValor(), $cliente_producto_pagoDTO->getSoporte(), $cliente_producto_pagoDTO->getValidacion());
         $result = $this->getConexion()->query($query);
 
         if($result){
