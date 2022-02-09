@@ -44,7 +44,7 @@ $datos_pago = $cliente_producto_pagoDAO->getAllPage($txt_busqueda, $id_cliente_p
             <td><?php echo $cliente_producto_pagoDTO->getFecha_pago(); ?></td>
             <td><?php echo $cliente_producto_pagoDTO->getMedio_pago(); ?></td>
             <td><?php echo $cliente_producto_pagoDTO->getValor(); ?></td>
-            <td><?php echo $cliente_producto_pagoDTO->getSoporte(); ?></td>
+            <td><a class="<?php echo file_exists('../public/images/soporte_pagos/'.$cliente_producto_pagoDTO->getSoporte())?'link-primary':'link-secondary'; ?>" style="text-decoration:none" href="../public/images/soporte_pagos/<?php echo $cliente_producto_pagoDTO->getSoporte(); ?>" download="<?php echo $cliente_producto_pagoDTO->getSoporte(); ?>"><?php echo $cliente_producto_pagoDTO->getSoporte(); ?></a></td>
             <td><?php echo $cliente_producto_pagoDTO->getValidacion(); ?></td>
                  
         </tr>

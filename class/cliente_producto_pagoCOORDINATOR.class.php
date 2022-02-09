@@ -9,12 +9,18 @@ class cliente_producto_pagoCOORDINATOR extends conexion{
         $medio_pago = filter_input(INPUT_POST,"medio_pago",FILTER_SANITIZE_STRING);
         $valor = filter_input(INPUT_POST,"valor",FILTER_SANITIZE_NUMBER_FLOAT);
         $validacion = filter_input(INPUT_POST,"validacion",FILTER_SANITIZE_STRING);
-        $nombre_soporte= $_FILES["soporte"]["name"].date("Ymdhis");
-        $soporte = './public/images/soporte_pagos/'.basename($nombre_soporte);
+        $nombre_soporte= date("Ymdh").$_FILES["soporte"]["name"];
+        $soporte = '../public/images/soporte_pagos/'.basename($nombre_soporte);
 
-        if(!move_uploaded_file($_FILES["soporte"]["tmp_name"], $soporte)){
-            echo "<script type='text/javascript'> alert('no se pudo mover el soporte'); </script>";
-        } 
+        if($_FILES["soporte"]["name"] != ''){
+
+            if(!move_uploaded_file($_FILES['soporte']['tmp_name'], $soporte)){
+                echo "<script type='text/javascript'> alert('no se pudo mover el soporte'); </script>";
+            } 
+        }else{
+            $nombre_soporte = "No hay soporte";
+        }
+
 
        //Actualizar saldo en cliente producto
        $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
@@ -28,7 +34,7 @@ class cliente_producto_pagoCOORDINATOR extends conexion{
        
         if($result_update){
             $cliente_producto_pagoDAO = new cliente_producto_pagoDAO($this->getConexion());
-            $cliente_producto_pagoDTO = new cliente_producto_pagoDTO(0, $id_cliente_producto, date('Y-m-d h:i:s'), $medio_pago, $valor, $soporte, $validacion);  
+            $cliente_producto_pagoDTO = new cliente_producto_pagoDTO(0, $id_cliente_producto, date('Y-m-d h:i:s'), $medio_pago, $valor, $nombre_soporte, $validacion);  
     
             $result_pago = $cliente_producto_pagoDAO->insert($cliente_producto_pagoDTO);
 

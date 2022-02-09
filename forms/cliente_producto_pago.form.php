@@ -50,7 +50,7 @@ $cliente_producto_pagoDTO->loadById($id_cliente_producto_pago, $conexion);
  
 
             <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
-                <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" value="<?php echo $id_cliente_producto; ?>">
+                <input type="hidden" class="form-control" id="id_cliente_producto" name="id_cliente_producto" value="<?php echo $id_cliente_producto; ?>">
 
                 <input type="hidden" name="modo" id="modo" value="<?php echo $cliente_producto_pagoDTO->getId_cliente_producto()?"editar":"crear"; ?>" />
 
