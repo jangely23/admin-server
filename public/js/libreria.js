@@ -96,6 +96,13 @@ function confirmarClave() {
     }
 }
 
+function confirmarAccion() {
+    fecha = new Date();
+    if (confirm("¿Estas seguro de enviar las cuentas de cobro hoy " + fecha + "?")) {
+        document.tuformulario.submit()
+    }
+}
+
 /* //No se esta usando actualmente
 
 function agregar_input() {

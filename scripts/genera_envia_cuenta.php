@@ -41,7 +41,7 @@ if(date('d',strtotime($fecha_actual))==16){  //validacion fechas de fcovoip y si
 
     $cliente_productos = $cliente_productoDAO->getAllByCheck($x_minuto);
     
-}else if(date('d',strtotime($fecha_actual))==05){ 
+}else if(date('d',strtotime($fecha_actual))==26){ 
     $inicio_corte = date("Y-m-d",strtotime($fecha_actual."-1 days")); 
     $fecha_pago = date("Y-m-t", strtotime($fecha_actual));
     $fecha_suspension = date("Y-m-d",strtotime($fecha_pago."+1 days")); 
