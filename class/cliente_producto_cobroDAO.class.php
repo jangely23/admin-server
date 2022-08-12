@@ -32,7 +32,7 @@ class cliente_producto_cobroDAO extends conexion{
 
         if($result){
             if($result->num_rows != 0){
-                return $result->fetch_object();
+                return $result->fetch_object()->numero_cuenta;
             }else{
                 return 0;
             }

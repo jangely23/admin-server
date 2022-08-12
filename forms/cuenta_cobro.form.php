@@ -16,7 +16,7 @@ date_default_timezone_set('America/Bogota');
     </fieldset>
 
     <div class="container-fluid p-3 me-3">
-        <form class="row g-3" method="POST" action="./../scripts/genera_envia_cuenta.php" onsubmit="//return enviarFormulario(this,'',`abrirPagina('lists/cliente_producto.php','contenido','')`)">
+        <form class="row g-3" method="POST" action="./../scripts/genera_envia_cuenta.php" onsubmit="return enviarFormulario(this,'',`abrirPagina('lists/cliente_producto.php','contenido','')`)">
 
             <div class="col-md-3 mb-3">
                 <label for="inicio_corte" class="form-label">Fecha corte</label>

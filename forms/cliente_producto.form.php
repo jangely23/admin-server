@@ -82,7 +82,7 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                  <div class="col-md-3 mb-3 list-group">
                     <label for="id_servidor" class="form-label">Servidor</label>
 
-                    <select name="id_servidor" aria-label="Default select example" id="id_servidor" class="form-select" required>
+                    <select name="id_servidor" aria-label="Default select example" id="id_servidor" class="form-select" required="yes">
                         <option>Seleccione...</option>
                         <?php 
                         while($obj = $servidores->fetch_object()){
@@ -112,13 +112,13 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
 
                 <div class="col-md-2 mb-3 list-group">
                     <label for="id_txt_maxcall" class="form-label">Canales</label>
-                    <input type="text" class="form-control" id="id_txt_maxcall" name="maxcall" placeholder="10" value="<?php echo $cliente_productoDTO->getMaxcall(); ?>" required>
+                    <input type="text" class="form-control" id="id_txt_maxcall" name="maxcall" placeholder="10" value="<?php echo $cliente_productoDTO->getMaxcall(); ?>" required="yes">
                 </div>
 
                 <div class="col-md-3 mb-3 list-group">
                     <label for="id_producto" class="form-label">Producto</label>
 
-                    <select name="id_producto" aria-label="Default select example" id="id_producto" class="form-select" required>
+                    <select name="id_producto" aria-label="Default select example" id="id_producto" class="form-select" required="yes">
                         <option>Seleccione...</option>
                         <?php 
                         while($obj = $productos->fetch_object()){
@@ -134,7 +134,7 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                 <div class="col-md-3 mb-3 list-group">
                     <label for="id_reseller" class="form-label">Reseller</label>
 
-                    <select name="id_reseller" aria-label="Default select example" id="id_reseller" class="form-select" required>
+                    <select name="id_reseller" aria-label="Default select example" id="id_reseller" class="form-select" required="yes">
                         <option>Seleccione...</option>
                         <?php 
                         while($obj = $reselleres->fetch_object()){
@@ -149,17 +149,17 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                                        
                 <div class="col-md-4 mb-3 list-group">
                     <label for="id_txt_referencia" class="form-label">Referencia</label>
-                    <input type="text" class="form-control" id="id_txt_referencia" name="referencia" placeholder="000656253482" value="<?php echo $cliente_productoDTO->getReferencia(); ?>" required>
+                    <input type="text" class="form-control" id="id_txt_referencia" name="referencia" placeholder="000656253482" value="<?php echo $cliente_productoDTO->getReferencia(); ?>" required="yes">
                 </div>
 
                 <div class="col-md-2 mb-3 list-group">
                     <label for="id_txt_descuento" class="form-label">% Descuento</label>
-                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50" value="<?php echo $cliente_productoDTO->getDescuento(); ?>" required>
+                    <input type="number" step="any" class="form-control" id="id_txt_descuento" name="descuento" placeholder="50" value="<?php echo $cliente_productoDTO->getDescuento(); ?>" required="yes">
                 </div>
 
                 <div class="col-md-3 mb-3 list-group">
                     <label for="id_txt_precio_venta" class="form-label">Precio de venta</label>
-                    <input type="number" step="any" class="form-control" id="id_txt_precio_venta" name="precio_venta" placeholder="180.000" value="<?php echo $cliente_productoDTO->getPrecio_venta(); ?>" required>
+                    <input type="number" step="any" class="form-control" id="id_txt_precio_venta" name="precio_venta" placeholder="180.000" value="<?php echo $cliente_productoDTO->getPrecio_venta(); ?>" required="yes">
                 </div>
 
                 <div class="col-md-3 mb-3 list-group">

@@ -113,7 +113,7 @@ $logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($
 <?php
 $html=ob_get_clean();
 $options = new Options();
-$options->set('defaultFont', ' Helvetica');
+$options->set('defaultFont', 'Helvetica');
 $options->setIsHtml5ParserEnabled(true);
 $options->setIsRemoteEnabled(true);
 
