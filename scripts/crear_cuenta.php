@@ -35,8 +35,8 @@ $logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($
                 bottom: 5px;
                 position: static;
                 height: auto;
-                text-align: left;
                 margin-left:30px;
+                text-align: justify;
             }
 
             main {
@@ -57,13 +57,15 @@ $logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($
                 text-align: center;
                 color:dimgrey;
             }
+
+
         </style>
     </head>
 
     <body>
         <header>
             <img src="<?php echo $logoBase64;?>" alt=""/>
-            <p>Ibagué, <?php echo $fechas[0];?></p>
+            <p> Cuenta Nº <?php echo $numero_cuenta;?> - Ibagué, <?php echo $fechas[0];?>  </p>
             <br>
         </header>
 
@@ -74,10 +76,13 @@ $logoefectyBase64 = "data:image/jpeg;base64,". base64_encode(file_get_contents($
         <main> 
             <div>
                 <h3><?php echo $nombre_cliente;?></h3>
-                <p> NIT &nbsp; <?php echo " ".$cc_nit;?></p><br>
+
+                <?php if($cc_nit != "") {?>
+                    <?php echo "<p> NIT &nbsp; ".$cc_nit."</p>";?><br>
+                <?php } ?>
                 <p>Debe a:<br> FCOSYSTEMS </br>NIT: 93412119-4</p>
-                <p>Por concepto: Alquiler Servidor IP <?php echo $ip_servidor;?> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
-                <p>Valor de $<?php echo $valor_pagar;?> <br>Moneda corriente pesos colombianos<br><br>Fecha de corte facturación: <?php echo $fechas[1];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
+                <p>Por concepto: Alquiler Servidor Cloud IP <?php echo $ip_servidor;?> <br>del <?php echo $fechas[1]." al ".$fechas[2];?> </p><br><br>
+                <p>Valor de USD <?php echo $valor_pagar;?> <br>Moneda dolar estadounidense<br><b>Pago en pesos al cambio de la TRM del día del pago</b><br><br>Fecha de corte facturación: <?php echo $fechas[1];?> <br>Fecha límite de pago: <?php echo $fechas[3];?> <br>Fecha de suspension: <?php echo $fechas[4];?></p><br><br><br>
                 </div>
         
                 <table>

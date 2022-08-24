@@ -11,7 +11,7 @@ $mail = new PHPMailer(true);
 
 $contacto_clienteDTO = new contacto_clienteDTO();
 
-function enviarEmail(int $id_cliente, string $adjunto ='', $tipo_email_enviar,  $ip_servidor, $conexion){
+function enviarEmail(int $id_cliente, string $adjunto ='',$ip_servidor, $conexion){
     $clienteDTO = new clienteDTO();
     $clienteDTO->loadById($id_cliente, $conexion);
 
@@ -40,7 +40,6 @@ function enviarEmail(int $id_cliente, string $adjunto ='', $tipo_email_enviar,  
         foreach($row as $valor){
             $count = $count + 1;
             $mail->addAddress($valor);
-            var_dump($valor);
         }    
     }
 

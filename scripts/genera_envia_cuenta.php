@@ -65,9 +65,12 @@ while($obj = $cliente_productos->fetch_object()){
     $valor_pagar = $valor_total + $cliente_productoDTO->getSaldo();
 
     $nombre_cuenta = crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar);   
+
+    var_dump($nombre_cuenta);
+    exit();
     
     if(file_exists("../public/pdf/cuenta_cobro/$nombre_cuenta")){
-
+        
         //inserta registro del cobro en la DB
         $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "valor server ".$cliente_productoDTO->getPrecio_venta()." con descuento de ".$cliente_productoDTO->getDescuento()."%" . ", saldo pendiente de pago mes anterior ".$cliente_productoDTO->getSaldo(), $valor_pagar);
         $cliente_producto_cobroDAO = new cliente_producto_cobroDAO($conexion);
@@ -78,7 +81,7 @@ while($obj = $cliente_productos->fetch_object()){
         $result = $cliente_productoDAO->update($cliente_productoDTO_nuevo);
        
         //envia el email
-        enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $tipo_email_enviar, $ip_servidor, $conexion);
+        enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $ip_servidor, $conexion);
         sleep(3);
         
     }else{
