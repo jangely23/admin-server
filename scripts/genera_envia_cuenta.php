@@ -6,8 +6,8 @@ include "../class/cliente_producto_cobroDAO.class.php";
 include "../class/cliente_producto_cobroDTO.class.php";
 include "../class/cliente_productoDAO.class.php";
 include "../class/cliente_productoDTO.class.php";
-require "../class/contacto_clienteDAO.class.php";
-require "../class/contacto_clienteDTO.class.php";
+include "../class/contacto_clienteDAO.class.php";
+include "../class/contacto_clienteDTO.class.php";
 include "../class/clienteDAO.class.php";
 include "../class/clienteDTO.class.php";
 include "../class/servidorDAO.class.php";
@@ -49,7 +49,7 @@ while($obj = $cliente_productos->fetch_object()){
 
     //datos basicos para generar cuenta de cobro 
     if ($cuenta_cobro==0){
-        $numero_cuenta=000001;
+        $numero_cuenta=8978;
     }else{
         $numero_cuenta = $cuenta_cobro + 1;
     }
@@ -65,11 +65,8 @@ while($obj = $cliente_productos->fetch_object()){
     $valor_pagar = $valor_total + $cliente_productoDTO->getSaldo();
 
     $nombre_cuenta = crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar);   
-
-    var_dump($nombre_cuenta);
-    exit();
     
-    if(file_exists("../public/pdf/cuenta_cobro/$nombre_cuenta")){
+    if(file_exists("./../public/pdf/cuenta_cobro/$nombre_cuenta")){
         
         //inserta registro del cobro en la DB
         $cliente_producto_cobroDTO = new cliente_producto_cobroDTO(0, $cliente_productoDTO->getId_cliente_producto(), $nombre_cuenta, $numero_cuenta, $inicio_corte ." 00:00:00", $fecha_pago ." 00:00:00" , $fecha_suspension . " 00:00:00", 'generada', "valor server ".$cliente_productoDTO->getPrecio_venta()." con descuento de ".$cliente_productoDTO->getDescuento()."%" . ", saldo pendiente de pago mes anterior ".$cliente_productoDTO->getSaldo(), $valor_pagar);
@@ -79,7 +76,7 @@ while($obj = $cliente_productos->fetch_object()){
         //actualiza info saldo cliente producto
         $cliente_productoDTO_nuevo = new cliente_productoDTO($cliente_productoDTO->getId_cliente_producto(), $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(), $cliente_productoDTO->getMaxcall(), $cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $valor_pagar, $cliente_productoDTO->getDescuento());
         $result = $cliente_productoDAO->update($cliente_productoDTO_nuevo);
-       
+        
         //envia el email
         enviarEmail($cliente_productoDTO->getId_cliente(), $nombre_cuenta, $ip_servidor, $conexion);
         sleep(3);

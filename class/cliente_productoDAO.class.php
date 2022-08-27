@@ -76,7 +76,7 @@ class cliente_productoDAO extends conexion{
         }
     }
 
-    //funcion de uso exclusivo para generar_cuenta_cobro
+    //funcion de uso exclusivo obtener los clientes a los cuales generar_cuenta_cobro
     function getAllByCheck(int $x_minuto=0): mysqli_result{
         date_default_timezone_set('America/Bogota');
         
@@ -84,12 +84,12 @@ class cliente_productoDAO extends conexion{
         /* $fecha_referencia = strtotime('first day of this month', time());
         $fecha_validar = date('Y-m-d h:i:s', $fecha_referencia); */
 
-        $fecha_validar="2022-08-08 17:16:00";
+        $fecha_validar="2022-09-08 17:16:00";
 
         if($x_minuto == 0){
-            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto != 14 AND id_producto != 15  AND fecha_creacion < "%s"  ORDER BY id_cliente, id_producto',$fecha_validar);
+            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto > 3  AND fecha_creacion < "%s"  ORDER BY id_cliente, id_producto',$fecha_validar);
         }else{
-            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto = 15 AND fecha_creacion < "%s" ORDER BY id_cliente, id_producto',$fecha_validar);
+            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto = 3 AND fecha_creacion < "%s" ORDER BY id_cliente, id_producto',$fecha_validar);
         }
 
         $result = $this->getConexion()->query($query);

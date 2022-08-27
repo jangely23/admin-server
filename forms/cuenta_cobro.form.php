@@ -39,7 +39,7 @@ date_default_timezone_set('America/Bogota');
             </div>
 
             <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
-                <button type="submit" id="boton" name="enviar" class="btn btn-info">Guardar</button>
+                <button id="boton" name="enviar" class="btn btn-info" onclick="confirmarAccion();">Guardar</button>
             </div>
         </form>
     </div>

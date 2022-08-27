@@ -11,7 +11,7 @@ function deshabilitarCampos() {
             deshabilitar.removeAttr("onclick").removeClass('text-primary text-warning text-danger text-info text-success').addClass('text-secondary disable fw-light');
 
         } else if (estado_texto === "inactivo") {
-            deshabilitar.removeClass('text-warning text-danger text-success').addClass('text-light fw-lighter');
+            deshabilitar.removeClass('text-warning text-danger text-success text-info').addClass('fw-light text-secondary');
             console.log(padre, deshabilitar)
         }
     })
