@@ -27,8 +27,10 @@ date_default_timezone_set('America/Bogota');
 
 $tipo_email_enviar = "cuenta_cobro";  //permitira a futuro validar si el mail a enviar es de cobro, suspension o cancelacion.
 
-$x_minuto = filter_input(INPUT_POST,'x_minuto',FILTER_SANITIZE_NUMBER_INT)??0; //0 no es server x minuto, 1 si es server por minuto
+$x_minuto = $_POST['x_minuto']==true?1:0; //0 no es server x minuto, 1 si es server por minuto
+$moneda_usd = $_POST['moneda_usd']; //true es pesos, false es dolares
 
+$valor_dolar_cambio = 3600;
 $fecha_actual = date('Y-m-d');
 
 $inicio_corte = filter_input(INPUT_POST,'inicio_corte',FILTER_SANITIZE_STRING);
@@ -62,7 +64,15 @@ while($obj = $cliente_productos->fetch_object()){
     //valida el valor a pagar a anexar en la cuenta de cobro
     $descuento = ($cliente_productoDTO->getPrecio_venta() * $cliente_productoDTO->getDescuento())/100;
     $valor_total = $cliente_productoDTO->getPrecio_venta() - $descuento;
-    $valor_pagar = $valor_total + $cliente_productoDTO->getSaldo();
+    $valor_pagar_cliente = $valor_total + $cliente_productoDTO->getSaldo();
+
+    if($moneda_usd){
+        $conversion = ($valor_total / $valor_dolar_cambio);
+        $valor_pagar = number_format($conversion, 2, ".", "");;
+    }else{
+        $valor_pagar = $valor_total;
+    }
+    
 
     $nombre_cuenta = crearCuenta($fechas, $numero_cuenta, $nombre_cliente, $cc_nit, $ip_servidor, $referencia, $valor_pagar);   
     
@@ -74,7 +84,7 @@ while($obj = $cliente_productos->fetch_object()){
         $result = $cliente_producto_cobroDAO->insert($cliente_producto_cobroDTO);
 
         //actualiza info saldo cliente producto
-        $cliente_productoDTO_nuevo = new cliente_productoDTO($cliente_productoDTO->getId_cliente_producto(), $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(), $cliente_productoDTO->getMaxcall(), $cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $valor_pagar, $cliente_productoDTO->getDescuento());
+        $cliente_productoDTO_nuevo = new cliente_productoDTO($cliente_productoDTO->getId_cliente_producto(), $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(), $cliente_productoDTO->getMaxcall(), $cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $valor_pagar_cliente, $cliente_productoDTO->getDescuento());
         $result = $cliente_productoDAO->update($cliente_productoDTO_nuevo);
         
         //envia el email
@@ -86,3 +96,5 @@ while($obj = $cliente_productos->fetch_object()){
     } 
 
 }
+
+?>

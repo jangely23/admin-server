@@ -167,7 +167,15 @@ if($servidores->num_rows == 0 && $id_cliente_producto == 0){
                     <input type="number" step="any" class="form-control" id="id_txt_saldo" name="saldo" placeholder="180.000" value="<?php echo $cliente_productoDTO->getSaldo(); ?>">
                 </div>
 
-                <div class="col-md-12 mb-3 d-flex justify-content-start align-items-end">
+                <div class="px-3">
+                    <div class="form-check form-switch col-md-3 d-flex align-items-center justify-content-center">
+                        <input class="form-check-input"  type="checkbox" id="customSwitch1" name="cobro" <?php echo $cliente_productoDTO->getCobro()==1?'checked':''; ?> />
+                        <label class="form-check-label p-3" for="customSwitch1">On / Off envío de cuenta de cobro</label>
+                    </div>
+                </div>
+
+
+                <div class="mb-3 d-flex justify-content-start align-items-end">
                     <input type="hidden" class="form-control" id="id_cliente_producto" name="id_cliente_producto" value="<?php echo $cliente_productoDTO->getId_cliente_producto(); ?>">
                     
                     <input type="hidden" name="modo" id="modo" value="<?php echo $cliente_productoDTO->getId_cliente_producto()?"editar":"crear"; ?>" />
