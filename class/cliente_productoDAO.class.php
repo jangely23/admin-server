@@ -76,19 +76,16 @@ class cliente_productoDAO extends conexion{
         }
     }
 
-    //funcion de uso exclusivo para generar_cuenta_cobro
+    //funcion de uso exclusivo obtener los clientes a los cuales generar_cuenta_cobro
     function getAllByCheck(int $x_minuto=0): mysqli_result{
         date_default_timezone_set('America/Bogota');
-        
-        $fecha_referencia = strtotime('first day of this month', time());
-        $fecha_validar = date('Y-m-d h:i:s', $fecha_referencia);
 
         if($x_minuto == 0){
-            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto != 14 AND id_producto != 15  AND fecha_creacion < "%s"  ORDER BY id_cliente, id_producto',$fecha_validar);
+            $query = 'SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto > 3 AND cobro=1 ORDER BY id_cliente, id_producto';
         }else{
-            $query = sprintf('SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto = 15 AND fecha_creacion < "%s" ORDER BY id_cliente, id_producto',$fecha_validar);
+            $query = 'SELECT * FROM cliente_producto WHERE estado = "activo" AND id_producto = 3 AND cobro=1 ORDER BY id_cliente, id_producto';
         }
-        
+
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -99,7 +96,7 @@ class cliente_productoDAO extends conexion{
     }
 
     function insert(cliente_productoDTO $cliente_productoDTO){
-        $query = sprintf('INSERT INTO cliente_producto (id_servidor, id_cliente, id_producto, id_reseller, ip_docker, estado, maxcall, precio_venta, referencia, dominio, saldo, descuento) VALUES (%d, %d, %d, %d, "%s", "%s", "%s", %f, "%s", "%s", %f , %f)', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento());
+        $query = sprintf('INSERT INTO cliente_producto (id_servidor, id_cliente, id_producto, id_reseller, ip_docker, estado, maxcall, precio_venta, referencia, dominio, saldo, descuento, cobro) VALUES (%d, %d, %d, %d, "%s", "%s", "%s", %f, "%s", "%s", %f , %f, %d)', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento(), $cliente_productoDTO->getCobro());
 
         $result = $this->getConexion()->query($query);
 
@@ -112,7 +109,7 @@ class cliente_productoDAO extends conexion{
 
 
     function update(cliente_productoDTO $cliente_productoDTO){
-        $query = sprintf('UPDATE cliente_producto SET id_servidor=%d, id_cliente=%d, id_producto=%d, id_reseller=%d, ip_docker="%s", estado="%s", maxcall="%s", precio_venta=%f, referencia="%s", dominio="%s", saldo=%f, descuento=%f WHERE id_cliente_producto=%d', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento(), $cliente_productoDTO->getId_cliente_producto());
+        $query = sprintf('UPDATE cliente_producto SET id_servidor=%d, id_cliente=%d, id_producto=%d, id_reseller=%d, ip_docker="%s", estado="%s", maxcall="%s", precio_venta=%f, referencia="%s", dominio="%s", saldo=%f, descuento=%f, cobro=%d WHERE id_cliente_producto=%d', $cliente_productoDTO->getId_servidor(), $cliente_productoDTO->getId_cliente(), $cliente_productoDTO->getId_producto(), $cliente_productoDTO->getId_reseller(), $cliente_productoDTO->getIp_docker(), $cliente_productoDTO->getEstado(),$cliente_productoDTO->getMaxcall(),$cliente_productoDTO->getPrecio_venta(), $cliente_productoDTO->getReferencia(), $cliente_productoDTO->getDominio(), $cliente_productoDTO->getSaldo(), $cliente_productoDTO->getDescuento(), $cliente_productoDTO->getCobro(), $cliente_productoDTO->getId_cliente_producto());
         
         $result = $this->getConexion()->query($query);
 

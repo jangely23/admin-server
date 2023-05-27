@@ -25,14 +25,15 @@ class cliente_producto_cobroDAO extends conexion{
         }
     }
 
-    //uso exclusivo para la generacion_envio_cuenta
+
     function getAcountEnd(){
+        //uso exclusivo para obtener el ultimo numero de la cuenta de cobro para usar como base en las nuevas a generar la generacion_envio_cuenta
         $query = "SELECT * FROM cliente_producto_cobro ORDER BY numero_cuenta DESC LIMIT 1";
         $result = $this->getConexion()->query($query);
 
         if($result){
             if($result->num_rows != 0){
-                return $result->fetch_object();
+                return $result->fetch_object()->numero_cuenta;
             }else{
                 return 0;
             }

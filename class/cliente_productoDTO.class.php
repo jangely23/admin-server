@@ -17,8 +17,9 @@ class cliente_productoDTO{
     private string $dominio;
     private float $saldo;
     private float $descuento;
+    private int $cobro;
 
-    function __construct(int $id_cliente_producto=0, $id_servidor=0, $id_cliente=0, $id_producto=0, $id_reseller=0,string $ip_docker='', $estado='',int $maxcall=0, float $precio_venta=0, string $referencia='', $dominio='', float $saldo=0, $descuento=0){
+    function __construct(int $id_cliente_producto=0, $id_servidor=0, $id_cliente=0, $id_producto=0, $id_reseller=0,string $ip_docker='', $estado='',int $maxcall=0, float $precio_venta=0, string $referencia='', $dominio='', float $saldo=0, $descuento=0, $cobro=1){
         $this->id_cliente_producto = $id_cliente_producto;
         $this->id_servidor = $id_servidor;
         $this->id_cliente = $id_cliente;
@@ -32,6 +33,7 @@ class cliente_productoDTO{
         $this->dominio = $dominio;
         $this->saldo = $saldo;
         $this->descuento = $descuento;
+        $this->cobro = $cobro;
     }
 
     public function getId_cliente_producto(): int { return $this->id_cliente_producto; }
@@ -56,7 +58,7 @@ class cliente_productoDTO{
     public function setEstado(string $estado): void { $this->estado = $estado; }
 
     public function getMaxcall(): string { return $this->maxcall; }
-    public function setMaxcall(string $maxcall): void { $this->maxcall = $maxcall; }
+    public function setMaxcall(int $maxcall): void { $this->maxcall = $maxcall; }
 
     public function getPrecio_venta(): float { return $this->precio_venta; }
     public function setPrecio_venta(float $precio_venta): void { $this->precio_venta = $precio_venta; }
@@ -73,6 +75,9 @@ class cliente_productoDTO{
     public function getDescuento(): float { return $this->descuento; }
     public function setDescuento(float $descuento): void { $this->descuento = $descuento; }
 
+    public function getCobro(): float { return $this->cobro; }
+    public function setCobro(float $cobro): void { $this->cobro = $cobro; }
+
     function map($obj){
         $this->setId_cliente_producto($obj->id_cliente_producto);
         $this->setId_servidor($obj->id_servidor);
@@ -87,6 +92,7 @@ class cliente_productoDTO{
         $this->setDominio($obj->dominio);
         $this->setSaldo($obj->saldo);
         $this->setDescuento($obj->descuento);
+        $this->setCobro($obj->cobro);
     }
 
     function loadById(int $id_cliente_producto, mysqli $conexion){

@@ -34,7 +34,7 @@ $cliente_producto_pagoDTO->loadById($id_cliente_producto_pago, $conexion);
 
             <div class="col-md-6 mb-3">
                 <label for="valor" class="form-label">Valor</label>
-                <input autocomplete="off" type="text" class="form-control" id="valor" name="valor" placeholder="50000" value="<?php echo $cliente_producto_pagoDTO->getValor();?>" required="yes">
+                <input autocomplete="off" type="number" class="form-control" id="valor" name="valor" placeholder="50000" value="<?php echo $cliente_producto_pagoDTO->getValor();?>" required="yes">
             </div> 
 
             <div class="col-md-6 mb-3">
