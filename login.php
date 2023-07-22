@@ -2,7 +2,7 @@
 session_name("admin");
 session_start();
 
-if($_SESSION['en_session']) {
+if(isset($_SESSION['en_session'])) {
     header("Location: index.php");
 }
 ?>
