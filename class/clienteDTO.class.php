@@ -54,8 +54,8 @@ class clienteDTO{
         $this->setNombre($obj->nombre);
         $this->setCcNit($obj->cc_nit);
         $this->setAdministrador($obj->administrador);
-        $this->setDireccion($obj->direccion??'none');
-        $this->setCiudad($obj->ciudad);
+        $this->setDireccion($obj->direccion??'');
+        $this->setCiudad($obj->ciudad??'');
         $this->setPais($obj->pais);
         $this->setEstado($obj->estado);
     }
