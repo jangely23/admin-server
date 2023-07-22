@@ -32,7 +32,7 @@ class servidorDAO extends conexion{
             $sqlBusqueda = sprintf('AND (ip like "%%%1$s%%" or tipo like "%%%1$s%%" or estado  like "%%%1$s%%" or periodicidad_pago  like "%%%1$s%%" or nombre  like "%%%1$s%%" or fecha_creacion  like "%%%1$s%%" or observacion  like "%%%1$s%%")', $txt_busqueda);
         }
 
-        $query = sprintf('SELECT count(*) as cantidad FROM servidor where 1=1 %s',$sqlBusqueda);
+        $query = sprintf('SELECT count(*) as cantidad FROM servidor where 1=1 %s ORDER BY tipo DESC, estado ASC, nombre ASC',$sqlBusqueda);
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -50,7 +50,7 @@ class servidorDAO extends conexion{
             $sqlBusqueda = sprintf('AND(ip like "%%%1$s%%" or tipo like "%%%1$s%%" or estado  like "%%%1$s%%" or periodicidad_pago  like "%%%1$s%%" or nombre  like "%%%1$s%%" or fecha_creacion  like "%%%1$s%%" or observacion  like "%%%1$s%%")', $txt_busqueda);
         }
 
-        $query = sprintf('SELECT * FROM servidor where 1=1 %s ORDER BY estado, tipo asc LIMIT %d, %d',$sqlBusqueda, $inicio, $muestra);
+        $query = sprintf('SELECT * FROM servidor where 1=1 %s ORDER BY tipo DESC, estado ASC, nombre ASC LIMIT %d, %d',$sqlBusqueda, $inicio, $muestra);
         
         $result = $this->getConexion()->query($query);
         
@@ -70,7 +70,7 @@ class servidorDAO extends conexion{
             $sql_busqueda = sprintf("OR id_servidor = %d",$id_servidor);
         }
 
-        $query = sprintf('SELECT * FROM servidor WHERE estado = "libre" %s ORDER BY tipo DESC', $sql_busqueda); 
+        $query = sprintf('SELECT * FROM servidor WHERE estado = "libre" %s ORDER BY tipo DESC, estado ASC, nombre ASC', $sql_busqueda); 
         $result = $this->getConexion()->query($query);
 
         if($result){

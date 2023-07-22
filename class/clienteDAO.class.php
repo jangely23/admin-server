@@ -32,7 +32,7 @@ class clienteDAO extends conexion{
             $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")', $txt_busqueda);
         }
 
-        $query=sprintf("SELECT count(*) AS cantidad FROM cliente WHERE 1=1 %s ORDER BY estado, nombre ASC", $sqlBusqueda);
+        $query=sprintf("SELECT count(*) AS cantidad FROM cliente WHERE 1=1 %s ORDER BY estado ASC, nombre ASC", $sqlBusqueda);
         $result = $this->getConexion()->query($query);
 
         if($result){
@@ -50,7 +50,7 @@ class clienteDAO extends conexion{
             $sqlBusqueda = sprintf('and (nombre like "%%%1$s%%" or cc_nit like "%%%1$s%%" or administrador like "%%%1$s%%" or direccion like "%%%1$s%%" or ciudad like "%%%1$s%%" or pais like "%%%1$s%%" or estado like "%%%1$s%%")',$txt_busqueda);
         }
 
-        $query=sprintf('SELECT * FROM cliente WHERE 1=1 %s ORDER BY estado, nombre ASC LIMIT %d,%d', $sqlBusqueda,$inicio,$muestra); 
+        $query=sprintf('SELECT * FROM cliente WHERE 1=1 %s ORDER BY estado ASC, nombre ASC LIMIT %d,%d', $sqlBusqueda,$inicio,$muestra); 
 
         $result = $this->getConexion()->query($query);
 

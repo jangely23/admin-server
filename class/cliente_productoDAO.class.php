@@ -120,6 +120,18 @@ class cliente_productoDAO extends conexion{
         }
     }
 
+
+    function updatePrice($price, $id_cliente_producto){
+        $query = sprintf('UPDATE cliente_producto SET precio_venta=%f WHERE id_cliente_producto=%d', $price, $id_cliente_producto );
+        
+        $result = $this->getConexion()->query($query);
+
+        if($result){
+            return $result;
+        }else{
+            throw new Exception("Error al intentar updatePrice() en cliente_productoDAO");
+        }
+    }
 }
 
 ?>
