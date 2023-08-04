@@ -14,6 +14,8 @@ include "../class/servidorDAO.class.php";
 include "../class/servidorDTO.class.php";
 include "./crear_cuenta.php";
 include "./enviar_email.php";
+include "/usr/local/sbin/consumo_server_x_minuto.php"; 
+
 
 $cliente_productoDTO = new cliente_productoDTO();
 $cliente_productoDAO = new cliente_productoDAO($conexion);
@@ -60,6 +62,16 @@ while($obj = $cliente_productos->fetch_object()){
     $cc_nit = $clienteDTO->getCcNit();
     $ip_servidor = $servidorDTO->getIp();
     $referencia = $cliente_productoDTO->getReferencia();
+
+    if($x_minuto==1){
+
+	$valor_consumido_x_minuto=consumoServer($cliente_productoDTO->getDominio());
+	    
+	if(intval($valor_consumido_x_minuto)){
+		$cliente_productoDTO->setPrecio_venta($valor_consumido_x_minuto);
+	}
+    }
+    
 
     //valida el valor a pagar a anexar en la cuenta de cobro
     $descuento = ($cliente_productoDTO->getPrecio_venta() * $cliente_productoDTO->getDescuento())/100;

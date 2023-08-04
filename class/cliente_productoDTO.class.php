@@ -88,8 +88,8 @@ class cliente_productoDTO{
         $this->setEstado($obj->estado);
         $this->setMaxcall($obj->maxcall);
         $this->setPrecio_venta($obj->precio_venta);
-        $this->setReferencia($obj->referencia);
-        $this->setDominio($obj->dominio);
+        $this->setReferencia($obj->referencia??'');
+        $this->setDominio($obj->dominio??'');
         $this->setSaldo($obj->saldo);
         $this->setDescuento($obj->descuento);
         $this->setCobro($obj->cobro);

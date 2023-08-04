@@ -17,14 +17,14 @@ class cliente_productoCOORDINATOR extends conexion{
         $dominio = filter_input(INPUT_POST, 'dominio',FILTER_SANITIZE_STRING);
         $saldo = filter_input(INPUT_POST, 'saldo',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $descuento = filter_input(INPUT_POST, 'descuento',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $cobro = filter_input(INPUT_POST, 'cobro',FILTER_SANITIZE_NUMBER_INT);
+        $cobro = filter_input(INPUT_POST, 'cobro',FILTER_SANITIZE_STRING);
 
         $servidorDAO = new servidorDAO($this->getConexion());
         $clienteDAO = new clienteDAO($this->getConexion());
         $server = $servidorDAO->getById($id_servidor);
         $cliente = $clienteDAO->getById($id_cliente);
 
-        $cliente_productoDTO =  new cliente_productoDTO(0, $id_servidor, $id_cliente, $id_producto, $id_reseller, $ip_docker, $estado, $maxcall, $precio_venta, $referencia, $dominio, $saldo, $descuento, $cobro);
+        $cliente_productoDTO =  new cliente_productoDTO(0, $id_servidor, $id_cliente, $id_producto, $id_reseller, $ip_docker, $estado, $maxcall, $precio_venta, $referencia, $dominio, $saldo, $descuento, $cobro=='on'?1:0);
         $cliente_productoDAO = new cliente_productoDAO($this->getConexion());
         $id_cliente_producto = $cliente_productoDAO->insert($cliente_productoDTO);
 

@@ -24,6 +24,8 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
             Clientes
         </legend>
     </fieldset>
+
+
     <div class="container-fluid p-3 me-3">
         <form class="row g-3" method="POST" action="./process/cliente.process.php" onsubmit="return enviarFormulario(this,'',`abrirPagina('lists/cliente.php', 'contenido', '&txt_busqueda='+$('#id_txt_nombre').val());`);">
             <div class="col-md-6 mb-3">
@@ -61,7 +63,7 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
                         
             <div class="col-md-6 mb-3">
                 <label for="id_txt_direccion" class="form-label">Direccion</label>
-                <input type="text" class="form-control" id="id_txt_direccion" name="direccion" placeholder="direccion" value="<?php echo $clienteDTO->getDireccion(); ?>">
+                <input type="text" class="form-control" id="id_txt_direccion" name="direccion" placeholder="direccion" value="<?php echo $clienteDTO->getDireccion(); ?>" required>
             </div>
             
             <?php  if($contactos_cliente ->num_rows == 0){ ?>
@@ -92,8 +94,9 @@ $contactos_cliente = $contacto_clienteDAO->getAllPage($clienteDTO->getIdCliente(
                 <input type="hidden" class="form-control" id="id_cliente" name="id_cliente" value="<?php echo $clienteDTO->getIdCliente(); ?>">
                 
                 <input type="hidden" name="modo" id="modo" value="<?php echo $clienteDTO->getIdCliente()?"editar":"crear"; ?>" />
-
-                <button type="submit" id="boton" name="enviar" class="btn btn-info">Guardar</button>
+		
+		
+		<button type="submit" id="boton" name="enviar" class="btn btn-info">Guardar</button>
             </div>
 
         </form>
